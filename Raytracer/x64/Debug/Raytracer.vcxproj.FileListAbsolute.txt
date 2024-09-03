@@ -1,1 +1,2 @@
 C:\Users\zivgr\Documents\Repos\Ray-Tracer\Raytracer\x64\Debug\Raytracer.vcxproj.Up2Date
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\x64\Debug\Raytracer.vcxproj.CopyComplete

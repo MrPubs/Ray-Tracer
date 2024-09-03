@@ -1,1 +1,45 @@
-﻿  Raytracer.vcxproj -> C:\Users\zivg\Documents\GHub\Ray-Tracer\x64\Debug\Raytracer.exe
+﻿  Geometry.cpp
+  Main.cpp
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Geometry.cpp(108,19): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Materials.cpp
+  Rays.cpp
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(58,22): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(58,22): warning C4244:         with
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(58,22): warning C4244:         [
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(58,22): warning C4244:             _Tp=uchar
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(58,22): warning C4244:         ]
+  Scene.cpp
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(27,64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(27,46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  LINK : C:\Users\zivg\Documents\GHub\Ray-Tracer\x64\Debug\Raytracer.exe not found or not built by the last incremental link; performing full link
+  Raytracer.vcxproj -> C:\Users\zivg\Documents\GHub\Ray-Tracer\x64\Debug\Raytracer.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.
+  Add-Content : The process cannot access the file 
+  'C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\x64\Debug\Raytracer.tlog\Raytracer.write.1u.tlog' because it is 
+  being used by another process.
+  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:62 char:26
+  + ... tlogFile) { Add-Content $tlogFile $targetBinaryFilePath -Encoding Uni ...
+  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      + CategoryInfo          : WriteError: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], IOException
+      + FullyQualifiedErrorId : GetContentWriterIOError,Microsoft.PowerShell.Commands.AddContentCommand
+   
+  Add-Content : The process cannot access the file 
+  'C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\x64\Debug\Raytracer.tlog\Raytracer.write.1u.tlog' because it is 
+  being used by another process.
+  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:62 char:26
+  + ... tlogFile) { Add-Content $tlogFile $targetBinaryFilePath -Encoding Uni ...
+  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      + CategoryInfo          : WriteError: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], IOException
+      + FullyQualifiedErrorId : GetContentWriterIOError,Microsoft.PowerShell.Commands.AddContentCommand
+   
+  Add-Content : The process cannot access the file 
+  'C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\x64\Debug\Raytracer.tlog\Raytracer.write.1u.tlog' because it is 
+  being used by another process.
+  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:62 char:26
+  + ... tlogFile) { Add-Content $tlogFile $targetBinaryFilePath -Encoding Uni ...
+  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      + CategoryInfo          : WriteError: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], IOException
+      + FullyQualifiedErrorId : GetContentWriterIOError,Microsoft.PowerShell.Commands.AddContentCommand
+   
