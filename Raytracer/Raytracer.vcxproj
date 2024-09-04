@@ -136,17 +136,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="Materials.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Rays.cpp" />
     <ClCompile Include="Geometry.cpp" />
+    <ClCompile Include="Vectors.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Helpers.h" />
     <ClInclude Include="Materials.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Rays.h" />
     <ClInclude Include="Geometry.h" />
+    <ClInclude Include="Vectors.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

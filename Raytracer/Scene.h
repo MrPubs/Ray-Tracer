@@ -1,4 +1,5 @@
 
+
 // Scene.h
 #pragma once
 #include <vector>
@@ -14,9 +15,14 @@ public:
 
 	// Attributes
 	std::vector<Ray> rays;
-	std::vector<Ray> zbuff;
+	std::vector<float> zbuffer;
+	std::vector<Vec3d> mvecs;
+
 	int framerate, fov;
+	int width, height;
 	double frametime;
+	
+
 	Point3d location;
 	Rotator3d rotation;
 

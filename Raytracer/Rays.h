@@ -23,4 +23,5 @@ public:
 	
 	// Methods
 	bool castRay(const int row,const int col, const Scene& scene);
+
 };

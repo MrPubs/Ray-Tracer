@@ -1,4 +1,5 @@
 
+
 // Rays.cpp
 #include "Rays.h"
 #include "Scene.h"
@@ -20,7 +21,8 @@
 	{
 		// Params
 		iter++;
-		float ray_len = 0;
+		int ray_ind = row * scene.camera.width + col;
+		float ray_len = 0, distance = 0;
 		Point3d hit_pt({ 0,0,0 });
 
 		pixel[0] = 235; // B
@@ -52,11 +54,28 @@
 						// Check if Hit actual Triangle!
 						if (t.isInside(hit_pt))
 						{
+
 							// std::cout << "Started from the bottom now we here!" << std::endl; // !!!
-							pixel[0] = 0; // B
-							pixel[1] = 0; // G
-							pixel[2] = 255*(2/ray_len); // R
-							continue;
+							
+							// Check if closer than current pixel
+							if (scene.camera.zbuffer[ray_ind] == 0 || ray_len < scene.camera.zbuffer[ray_ind])
+							{
+
+								// Update Z Buffer
+								scene.camera.zbuffer[ray_ind] = ray_len;
+
+								// Set Distance
+								if (ray_len < 255) { distance = ray_len; }
+								else { distance = 255; }
+								
+								// Adjust Pixel - make better depth adjust function
+								pixel[0] = t.material.color.z * 50 /distance;// B
+								pixel[1] = t.material.color.y * 50 /distance;// G
+								pixel[2] = t.material.color.x * 50 /distance;// R
+
+
+								continue;
+							}
 						}
 					}
 				}
