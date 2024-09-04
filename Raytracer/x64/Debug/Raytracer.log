@@ -1,84 +1,51 @@
 ﻿  Main.cpp
+  Rays.cpp
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(72,44): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(72,44): warning C4244:         with
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(72,44): warning C4244:         [
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(72,44): warning C4244:             _Tp=uchar
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(72,44): warning C4244:         ]
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(73,44): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(73,44): warning C4244:         with
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(73,44): warning C4244:         [
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(73,44): warning C4244:             _Tp=uchar
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(73,44): warning C4244:         ]
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(74,44): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(74,44): warning C4244:         with
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(74,44): warning C4244:         [
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(74,44): warning C4244:             _Tp=uchar
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(74,44): warning C4244:         ]
+  Scene.cpp
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(36,66): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(36,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
   Raytracer.vcxproj -> C:\Users\zivg\Documents\GHub\Ray-Tracer\x64\Debug\Raytracer.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
-  Add-Content : Stream was not readable.
-  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:61 char:32
-  + ... FilesLog) { Add-Content $copiedFilesLog $targetBinaryFilePath -Encodi ...
-  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...kg.applocal.log:String) [Add-Content], ArgumentExcep 
-     tion
-      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
+  Set-Content : The process cannot access the file 
+  'C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\x64\Debug\vcpkg.applocal.log' because it is being used by another 
+  process.
+  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:12 char:5
+  +     Set-Content -Path $copiedFilesLog -Value "" -Encoding UTF8
+  +     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      + CategoryInfo          : NotSpecified: (:) [Set-Content], IOException
+      + FullyQualifiedErrorId : System.IO.IOException,Microsoft.PowerShell.Commands.SetContentCommand
    
-  Add-Content : Stream was not readable.
-  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:61 char:32
-  + ... FilesLog) { Add-Content $copiedFilesLog $targetBinaryFilePath -Encodi ...
-  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...kg.applocal.log:String) [Add-Content], ArgumentExcep 
-     tion
-      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
-   
-  Add-Content : Stream was not readable.
-  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:61 char:32
-  + ... FilesLog) { Add-Content $copiedFilesLog $targetBinaryFilePath -Encodi ...
-  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...kg.applocal.log:String) [Add-Content], ArgumentExcep 
-     tion
-      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
-   
-  Add-Content : Stream was not readable.
+  Add-Content : The process cannot access the file 
+  'C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\x64\Debug\Raytracer.tlog\Raytracer.write.1u.tlog' because it is 
+  being used by another process.
   At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:62 char:26
   + ... tlogFile) { Add-Content $tlogFile $targetBinaryFilePath -Encoding Uni ...
   +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], ArgumentExcep 
-     tion
-      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
+      + CategoryInfo          : WriteError: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], IOException
+      + FullyQualifiedErrorId : GetContentWriterIOError,Microsoft.PowerShell.Commands.AddContentCommand
    
-  Add-Content : Stream was not readable.
-  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:61 char:32
-  + ... FilesLog) { Add-Content $copiedFilesLog $targetBinaryFilePath -Encodi ...
-  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...kg.applocal.log:String) [Add-Content], ArgumentExcep 
-     tion
-      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
-   
-  Add-Content : Stream was not readable.
+  Add-Content : The process cannot access the file 
+  'C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\x64\Debug\Raytracer.tlog\Raytracer.write.1u.tlog' because it is 
+  being used by another process.
   At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:62 char:26
   + ... tlogFile) { Add-Content $tlogFile $targetBinaryFilePath -Encoding Uni ...
   +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], ArgumentExcep 
-     tion
-      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
-   
-  Add-Content : Stream was not readable.
-  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:61 char:32
-  + ... FilesLog) { Add-Content $copiedFilesLog $targetBinaryFilePath -Encodi ...
-  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...kg.applocal.log:String) [Add-Content], ArgumentExcep 
-     tion
-      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
-   
-  Add-Content : Stream was not readable.
-  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:62 char:26
-  + ... tlogFile) { Add-Content $tlogFile $targetBinaryFilePath -Encoding Uni ...
-  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], ArgumentExcep 
-     tion
-      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
-   
-  Add-Content : Stream was not readable.
-  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:62 char:26
-  + ... tlogFile) { Add-Content $tlogFile $targetBinaryFilePath -Encoding Uni ...
-  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], ArgumentExcep 
-     tion
-      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
-   
-  Add-Content : Stream was not readable.
-  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:62 char:26
-  + ... tlogFile) { Add-Content $tlogFile $targetBinaryFilePath -Encoding Uni ...
-  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], ArgumentExcep 
-     tion
-      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
+      + CategoryInfo          : WriteError: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], IOException
+      + FullyQualifiedErrorId : GetContentWriterIOError,Microsoft.PowerShell.Commands.AddContentCommand
    

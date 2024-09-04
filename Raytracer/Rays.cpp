@@ -7,9 +7,8 @@
 // Implement Ray
 
 	// Constructor
-	Ray::Ray(cv::Vec3b pixel, Vec3d m_vec):
+	Ray::Ray(cv::Vec3b pixel):
 		pixel(pixel),
-		m_vec(m_vec), // make setter and getter
 		iter(0)
 	{
 
@@ -17,11 +16,11 @@
 
 
 	// Ray Casting, Calculate Pixel Color.
-	bool Ray::castRay(const int row, const int col, const Scene& scene)
+	bool Ray::castRay(const int row, const int col, Camera& camera)
 	{
 		// Params
 		iter++;
-		int ray_ind = row * scene.camera.width + col;
+		int ray_ind = row * camera.width + col;
 		float ray_len = 0, distance = 0;
 		Point3d hit_pt({ 0,0,0 });
 
@@ -29,8 +28,9 @@
 		pixel[1] = 206; // G
 		pixel[2] = 135; // R
 
+
 		// Every Objects..
-		for (GeomObj obj : scene.geomObjs)
+		for (GeomObj obj : camera.scene.geomObjs)
 		{
 
 			// Every Triangle
@@ -38,12 +38,12 @@
 			{
 				
 				// Check if hit Plane:
-				ray_len = -1 * (t.normal * scene.camera.location + t.k) / (t.normal * m_vec);
+				ray_len = -1 * (t.normal * camera.location + t.k) / (t.normal * camera.mvecs[ray_ind]);
 				if (ray_len > 0)
 				{	
 
 					// Check hit Location
-					hit_pt = m_vec * ray_len + scene.camera.location;
+					hit_pt = camera.mvecs[ray_ind] * ray_len + camera.location;
 
 					// Check for Triangle Bounding Box Extent
 					if ((hit_pt.x <= t.max_ext.x && hit_pt.x >= t.min_ext.x)  && // Check for hit x in Triangle Bounding Box Extent
@@ -58,11 +58,11 @@
 							// std::cout << "Started from the bottom now we here!" << std::endl; // !!!
 							
 							// Check if closer than current pixel
-							if (scene.camera.zbuffer[ray_ind] == 0 || ray_len < scene.camera.zbuffer[ray_ind])
+							if (camera.zbuffer[ray_ind] == 0 || ray_len < camera.zbuffer[ray_ind])
 							{
 
 								// Update Z Buffer
-								scene.camera.zbuffer[ray_ind] = ray_len;
+								camera.zbuffer[ray_ind] = ray_len;
 
 								// Set Distance
 								if (ray_len < 255) { distance = ray_len; }
@@ -73,6 +73,7 @@
 								pixel[1] = t.material.color.y * 50 /distance;// G
 								pixel[2] = t.material.color.x * 50 /distance;// R
 
+								camera.frame[ray_ind] = pixel;
 
 								continue;
 							}

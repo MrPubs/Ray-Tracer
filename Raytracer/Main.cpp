@@ -2,27 +2,43 @@
 // Main.cpp
 #include <iostream>
 #include <vector>
+
 #include "Scene.h"
 #include "Geometry.h"
-
-// Helpers
 #include "Helpers.h"
+// Helpers
+//#include "Helpers.h"
 
 int main()
 {
 
     // Controls
-    int width = 601;
-    int height = 301;
-    int framerate = 24;
-    int fov = 90;
-
-    // Set up Camera
-    Camera camera = Camera(Point3d(0,0,0), Rotator3d(0,0,0), width=width, height=height, framerate=framerate, fov=fov);
+    const int width = 601;
+    const int height = 301;
+    const int framerate = 24;
 
     // Set up Scene
-    std::vector<GeomObj> geomObjs; // to populate
-    Scene scene = Scene(camera, geomObjs);
+    std::vector<GeomObj> geomObjs;
+    Scene scene(geomObjs);
+    
+    // Pyramids
+    GeomObj gob1 = MakeFallenPyramid(Point3d(15000, 0, 100), 12500, -40);
+    GeomObj gob2 = MakeFallenPyramid(Point3d(-15000, 0, 100), 12500, -40);
+    GeomObj gob3 = MakeFallenPyramid(Point3d(0, 5000, 50), 2500, 80);
+    scene.expand(gob1);
+    scene.expand(gob2);
+    scene.expand(gob3);
+
+
+    // Set Up Camera
+    Point3d location(0, 0, 0);
+    Rotator3d rotation(0, 0, 0);
+    Camera camera(location, rotation, scene, width, height, framerate);
+    
+
+    // Set up Viewport
+    Viewport viewport(camera);
+    viewport.work();
 
     //// --~-- Example for Definition of Triangles, Geometry objects, And expansion of Geometry Objects --~--
     //Triangle tri1({ Point3d(1,1,1), Point3d(2,2,2), Point3d(3,3,3) });
@@ -38,20 +54,6 @@ int main()
     //gob1.Expand({ Triangle({ Point3d(-1500,-1800,100), Point3d(-3000,0,20), Point3d(-8000,-6000,150) }) });
     //gob1.Expand({ Triangle({ Point3d(-2100,-1200,100), Point3d(-5000,-1200,100), Point3d(-3500,-5000,50) }) });
     //scene.expand(gob1);
-
-    // Pyramids
-    GeomObj gob1 = MakeFallenPyramid(Point3d(15000, 0, 100), 12500, -40);
-    GeomObj gob2 = MakeFallenPyramid(Point3d(-15000, 0, 100), 12500, -40);
-    GeomObj gob3 = MakeFallenPyramid(Point3d(0, 5000, 50), 2500, 80);
-    scene.expand(gob1);
-    scene.expand(gob2);
-    scene.expand(gob3);
-
-
-    // Set up Viewport
-    Viewport viewport = Viewport(width, height, scene);
-    viewport.work();
-    std::cout << "Done!" << std::endl;
 
     // 1. Initialize the Screen
     // Define the screen dimensions and other necessary settings (e.g., resolution).

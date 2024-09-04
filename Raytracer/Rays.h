@@ -5,7 +5,7 @@
 #include "Geometry.h"
 
 // Forward Declarations
-class Scene;
+class Camera;
 
 // Declare Rays
 class Ray
@@ -15,13 +15,12 @@ public:
 
 	// Attributes
 	cv::Vec3b pixel;
-	Vec3d m_vec;
 	int iter;
 
 	// Cons & Dest
-	Ray(cv::Vec3b pixel = { 0,0,0 }, Vec3d m_vec = {0,0,1});
+	Ray(cv::Vec3b pixel = { 0,0,0 });
 	
 	// Methods
-	bool castRay(const int row,const int col, const Scene& scene);
+	bool castRay(const int row,const int col, Camera& camera);
 
 };
