@@ -21,13 +21,8 @@
 		// Params
 		iter++;
 		int ray_ind = row * camera.width + col;
-		float ray_len = 0, distance = 0;
+		float ray_len = 0;
 		Point3d hit_pt({ 0,0,0 });
-
-		pixel[0] = 235; // B
-		pixel[1] = 206; // G
-		pixel[2] = 135; // R
-
 
 		// Every Objects..
 		for (GeomObj obj : camera.scene.geomObjs)
@@ -64,14 +59,10 @@
 								// Update Z Buffer
 								camera.zbuffer[ray_ind] = ray_len;
 
-								// Set Distance
-								if (ray_len < 255) { distance = ray_len; }
-								else { distance = 255; }
-								
 								// Adjust Pixel - make better depth adjust function
-								pixel[0] = t.material.color.z * 50 /distance;// B
-								pixel[1] = t.material.color.y * 50 /distance;// G
-								pixel[2] = t.material.color.x * 50 /distance;// R
+								pixel[0] = t.material.color.z; // B
+								pixel[1] = t.material.color.y; // G
+								pixel[2] = t.material.color.x; // R
 
 								camera.frame[ray_ind] = pixel;
 
