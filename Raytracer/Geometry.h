@@ -14,22 +14,25 @@ public:
 	
 	// Attributes
 	std::array<Point3d, 3> vertices;
-	Vec3d min_ext, max_ext; // Extents
-	Vec3d normal;
-	float k; // Plane Constant
 	Material material;
+
+	float k; // Plane Constant
+	Vec3d normal;
+	Vec3d min_ext, max_ext; // Extents
 
 	// Constructor
 	Triangle(std::array<Point3d, 3> vertices, Material material = Material({ 255, 0, 0 }));
 
-	//// Methods
+	// Querying
 	bool isIntersecting(const Point3d& pt);
-	void setExtents();
 	bool isInside(const Point3d& pt);
+	bool sameSide(const Point3d& pt, int vertex_ind);
+
+	// Methods
+	void initialize();
+	void setExtents();
 	void setPlaneParams();
 
-	// Helpers
-	bool sameSide(const Point3d& pt, int vertex_ind);
 };
 
 

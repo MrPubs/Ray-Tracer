@@ -13,23 +13,15 @@ int main()
 {
 
     // Controls
-    const int width = 601;
-    const int height = 301;
+    const int width = 300;
+    const int height = 300;
     const int framerate = 24;
 
     // Set up Scene
     std::vector<GeomObj> geomObjs;
     Scene scene(geomObjs);
-    
-    // Pyramids
-    //GeomObj gob1 = MakeFallenPyramid(Point3d(500, 0, 5), 500, -2);
-    //GeomObj gob2 = MakeFallenPyramid(Point3d(-500, 0, 20), 2000, -10);
-    //GeomObj gob3 = MakeFallenPyramid(Point3d(0, 500, 10), 500, 25);
-    //scene.expand(gob1);
-    //scene.expand(gob2);
-    //scene.expand(gob3);
-
-    GeomObj gob1 = MakeFallenPyramid(Point3d(0, 0, 3), 250, -2);
+   
+    GeomObj gob1 = MakeFallenPyramid(Point3d(0, 0, 3), 4, -2);
     scene.expand(gob1);
 
     // Set Up Camera

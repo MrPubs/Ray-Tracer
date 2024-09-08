@@ -26,10 +26,56 @@
 		setExtents();
  	}
 
-	// Methods
+	// Querying
 	bool Triangle::isIntersecting(const Point3d& pt)
 	{	
 		return true;
+	}
+	bool Triangle::isInside(const Point3d& pt)
+	{
+		//
+		//       pt2
+		//       / \
+		//    A /   \ B
+		//     /     \ 
+		//    /_______\
+		//  pt0   C   pt1
+		//
+		
+		// Per Side
+		bool sideA = sameSide(pt, 0);
+		bool sideB = sameSide(pt, 1);
+		bool sideC = sameSide(pt, 2);
+		return (sideA && sideB && sideC);
+	}
+	bool Triangle::sameSide(const Point3d& pt, int vertex_ind)
+	{
+		int vec_start = (vertex_ind + 1) % 3;
+		int vec_end   = (vertex_ind + 2) % 3;
+
+		Vec3d v = vertices[vec_start] - vertices[vec_end];
+		Vec3d a = v.cross(Vec3d(pt - vertices[vec_end]));
+		Vec3d b = v.cross(Vec3d(vertices[vertex_ind] - vertices[vec_end]));
+		float c = a * b;
+
+		return c >= 0 ;
+	}
+
+	// Methods
+	void Triangle::initialize()
+	{
+
+		// Set New Plane Params
+		setPlaneParams();
+
+		// Set New Plane Extents
+		setExtents();
+
+	}
+	void Triangle::setPlaneParams()
+	{
+		normal = (vertices[1] - vertices[0]).cross(vertices[2] - vertices[0]);
+		k = -(normal * vertices[0]);
 	}
 	void Triangle::setExtents()
 	{
@@ -67,42 +113,6 @@
 
 		}
 	}
-	bool Triangle::isInside(const Point3d& pt)
-	{
-		//
-		//       pt2
-		//       / \
-		//    A /   \ B
-		//     /     \ 
-		//    /_______\
-		//  pt0   C   pt1
-		//
-		
-		// Per Side
-		bool sideA = sameSide(pt, 0);
-		bool sideB = sameSide(pt, 1);
-		bool sideC = sameSide(pt, 2);
-		return (sideA && sideB && sideC);
-	}
-	void Triangle::setPlaneParams()
-	{
-		normal = (vertices[1] - vertices[0]).cross(vertices[2] - vertices[0]);
-		k = -(normal * vertices[0]);
-	}
-
-	// Helpers
-	bool Triangle::sameSide(const Point3d& pt, int vertex_ind)
-	{
-		int vec_start = (vertex_ind + 1) % 3;
-		int vec_end   = (vertex_ind + 2) % 3;
-
-		Vec3d v = vertices[vec_start] - vertices[vec_end];
-		Vec3d a = v.cross(Vec3d(pt - vertices[vec_end]));
-		Vec3d b = v.cross(Vec3d(vertices[vertex_ind] - vertices[vec_end]));
-		float c = a * b;
-
-		return c >= 0 ;
-	}
 
 // --~-- Implement GeomObj --~--
 
@@ -124,36 +134,30 @@
 	}
 	void GeomObj::setRotation(const Rotator3d& new_rotation)
 	{
-		Rotator3d rotator = new_rotation; // Omit this code in the future
-		std::cout << "Rotated: " << rotator.roll << " " << rotator.pitch << " " << rotator.yaw << std::endl;
+
+		// Get New Rotation in Radians
+		Rotator3d newRotation = new_rotation.toRad();
 
 		// Every Triangle
-		for (Triangle t : members)
+		for (Triangle& t : members)
 		{
 
 			// Every Vertex
-			for (Point3d v : t.vertices)
+			for (Point3d& vertex : t.vertices)
 			{
 
 				// Rotate and set
-				Vec3d p = v.rotate(Point3d(0, 0, 0), Rotator3d(90,90,90).toRad());
-				std::cout << "v: " << v.x << " " << v.y << " " << v.z << std::endl;
-				std::cout << "p: " << p.x << " " << p.y << " " << p.z << std::endl;
-				std::cout << "--------------------------------------" << std::endl;
-				v = p;
+				vertex = vertex.rotate(origin, newRotation);
 
 			}
 
-			// Set New Plane Params
-			t.setPlaneParams();
-
-			// Set New Plane Extents
-			t.setExtents();
-
+			// Commit Changes to Triangles
+			t.initialize();
+			continue;
 		}
 
-		rotation.roll = new_rotation.roll;
-		rotation.pitch = new_rotation.pitch;
-		rotation.yaw = new_rotation.yaw;
+		this->rotation.roll = new_rotation.roll;
+		this->rotation.pitch = new_rotation.pitch;
+		this->rotation.yaw = new_rotation.yaw;
 
 	}

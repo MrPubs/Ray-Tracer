@@ -25,5 +25,6 @@ GeomObj MakeFallenPyramid(Point3d center, float baseLength, float height) {
         Triangle({ base4, base1, apex }, Material({155,0,155})),   // Side 4
         });
 
+    pyramid.origin = center;
     return pyramid;
 }

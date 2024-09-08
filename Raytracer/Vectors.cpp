@@ -140,12 +140,12 @@ Rotator3d::Rotator3d(float roll, float pitch, float yaw) :
 }
 
 // Methods
-Rotator3d Rotator3d::toRad()
+Rotator3d Rotator3d::toRad() const
 {
 
 	return Rotator3d(roll * PI / 180.0f, pitch * PI / 180.0f, yaw * PI / 180.0f);
 }
-Rotator3d Rotator3d::toDeg()
+Rotator3d Rotator3d::toDeg() const
 {
 
 	return Rotator3d(roll * 180 / PI, pitch * 180 / PI, yaw * 180 / PI);

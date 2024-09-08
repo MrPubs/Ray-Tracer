@@ -97,7 +97,7 @@
 			{
 
 				// Calculate Slope..
-				mvecs[row * width + col] = Vec3d(col - width / 2, height / 2 - row, 1).rotate(location, rotation.toRad());
+				mvecs[row * width + col] = Vec3d((col - width / 2)*0.02, (height / 2 - row) * 0.02, 1).rotate(location, rotation.toRad());
 
 			}
 		}
@@ -155,11 +155,21 @@
 			cv::imshow("Raytracing Viewport", image);
 
 			// Wait & Check for Exit
-			checkInput();
+			//checkInput();
+
+
+			// testers
+			camera.scene.geomObjs[0].setRotation(Rotator3d(
+				2,
+				2,
+				2)
+			);
+			cv::waitKey(camera.framerate);
 
 		}
 	}
 
+	// Check for input - needs to leave on its own IO Process
 	void Viewport::checkInput()
 	{
 		float x = camera.scene.geomObjs[0].rotation.roll;
@@ -218,13 +228,26 @@
 			else if (key == 'p')
 			{
 
-				camera.scene.geomObjs[0].setRotation(Rotator3d(0, 0, 0));
+				camera.scene.geomObjs[0].setRotation(Rotator3d(0, 0, 45));
 
 			}
 
 			if (flag);
 			{
+
+				// Commit Camera Change
 				camera.calculateMVecs();
+
+				for (GeomObj& obj : camera.scene.geomObjs)
+				{
+
+					for (Triangle& t : obj.members)
+					{
+
+
+						t.initialize();
+					}
+				}
 			}
 		}
 	}

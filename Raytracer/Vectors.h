@@ -61,8 +61,8 @@ struct Rotator3d : public Vec3d
 	Rotator3d(float roll, float pitch, float yaw);
 
 	// Methods
-	Rotator3d toRad();
-	Rotator3d toDeg();
+	Rotator3d toRad() const;
+	Rotator3d toDeg() const;
 
 	// Helpers
 	// Helper function for matrix mul - 3x3 matrices only
