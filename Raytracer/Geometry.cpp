@@ -1,7 +1,10 @@
 
 
 // Geometry.cpp
+#include <iostream>
+
 #include "Geometry.h"
+#include "Vectors.h"
 
 // --~-- Implement Triangle --~--
 
@@ -11,9 +14,14 @@
 		material(material),
 		min_ext(vertices[0]),
 		max_ext(vertices[0]),
-		normal((vertices[1] - vertices[0]).cross(vertices[2] - vertices[0])),
-		k(-(normal*vertices[0]))
+		normal(Vec3d(0,0,0)),
+		k(0)
+
 	{
+
+		// Get Plane Params
+		setPlaneParams();
+
 		// Set minmax extents 
 		setExtents();
  	}
@@ -76,6 +84,11 @@
 		bool sideC = sameSide(pt, 2);
 		return (sideA && sideB && sideC);
 	}
+	void Triangle::setPlaneParams()
+	{
+		normal = (vertices[1] - vertices[0]).cross(vertices[2] - vertices[0]);
+		k = -(normal * vertices[0]);
+	}
 
 	// Helpers
 	bool Triangle::sameSide(const Point3d& pt, int vertex_ind)
@@ -111,6 +124,8 @@
 	}
 	void GeomObj::setRotation(const Rotator3d& new_rotation)
 	{
+		Rotator3d rotator = new_rotation; // Omit this code in the future
+		std::cout << "Rotated: " << rotator.roll << " " << rotator.pitch << " " << rotator.yaw << std::endl;
 
 		// Every Triangle
 		for (Triangle t : members)
@@ -121,12 +136,24 @@
 			{
 
 				// Rotate and set
-				v = v.rotate(origin, new_rotation);
+				Vec3d p = v.rotate(Point3d(0, 0, 0), Rotator3d(90,90,90).toRad());
+				std::cout << "v: " << v.x << " " << v.y << " " << v.z << std::endl;
+				std::cout << "p: " << p.x << " " << p.y << " " << p.z << std::endl;
+				std::cout << "--------------------------------------" << std::endl;
+				v = p;
 
 			}
+
+			// Set New Plane Params
+			t.setPlaneParams();
+
+			// Set New Plane Extents
+			t.setExtents();
+
 		}
 
 		rotation.roll = new_rotation.roll;
 		rotation.pitch = new_rotation.pitch;
 		rotation.yaw = new_rotation.yaw;
+
 	}

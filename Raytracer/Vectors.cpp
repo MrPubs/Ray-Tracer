@@ -92,7 +92,6 @@ Vec3d Vec3d::rotate(const Point3d origin, const Rotator3d& rotator) const
 	Vec3d translatedVector = *this - origin;
 	std::array<std::array<float, 3>, 3> rotationMatrix = multiplyMatrices(rollMatrix, multiplyMatrices(pitchMatrix, yawMatrix));
 
-
 	// Rotate the vector
 	float newX = rotationMatrix[0][0] * translatedVector.x + rotationMatrix[0][1] * translatedVector.y + rotationMatrix[0][2] * translatedVector.z;
 	float newY = rotationMatrix[1][0] * translatedVector.x + rotationMatrix[1][1] * translatedVector.y + rotationMatrix[1][2] * translatedVector.z;

@@ -162,7 +162,7 @@
 
 	void Viewport::checkInput()
 	{
-
+		float x = camera.scene.geomObjs[0].rotation.roll;
 		bool flag = false;
 		int key = cv::waitKey();
 		if (key >= 0)
@@ -180,6 +180,7 @@
 			{
 				camera.rotation.roll += 5;
 				flag = true;
+
 			}
 			else if (key == 'w')
 			{
@@ -214,6 +215,13 @@
 				camera.rotation.yaw = 0;
 				flag = true;
 			}
+			else if (key == 'p')
+			{
+
+				camera.scene.geomObjs[0].setRotation(Rotator3d(0, 0, 0));
+
+			}
+
 			if (flag);
 			{
 				camera.calculateMVecs();

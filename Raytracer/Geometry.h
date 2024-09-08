@@ -26,6 +26,7 @@ public:
 	bool isIntersecting(const Point3d& pt);
 	void setExtents();
 	bool isInside(const Point3d& pt);
+	void setPlaneParams();
 
 	// Helpers
 	bool sameSide(const Point3d& pt, int vertex_ind);
