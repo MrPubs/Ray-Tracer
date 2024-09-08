@@ -55,6 +55,7 @@ struct Rotator3d : public Vec3d
 
 	// Attributes
 	const float PI = 3.141592653589793f; // TODO: Fix cmath not recognizing the M_PI Identifier
+	float roll, pitch, yaw;
 
 	// Constructor
 	Rotator3d(float roll, float pitch, float yaw);

@@ -59,9 +59,9 @@ Vec3d Vec3d::rotate(const Point3d origin, const Rotator3d& rotator) const
 	Requires Radians!
 	*/
 
-	float roll = rotator.x;
-	float pitch = rotator.y;
-	float yaw = rotator.z;
+	float roll = rotator.roll;
+	float pitch = rotator.pitch;
+	float yaw = rotator.yaw;
 
 	// Precompute sine and cosine of angles
 	float cosRoll = std::cos(roll);
@@ -89,19 +89,18 @@ Vec3d Vec3d::rotate(const Point3d origin, const Rotator3d& rotator) const
 	} };
 
 	// Combined rotation matrix
-	std::array<std::array<float, 3>, 3> tempMatrix = multiplyMatrices(pitchMatrix, rollMatrix);
-	std::array<std::array<float, 3>, 3> rotationMatrix = multiplyMatrices(yawMatrix, tempMatrix);
+	Vec3d translatedVector = *this - origin;
+	std::array<std::array<float, 3>, 3> rotationMatrix = multiplyMatrices(rollMatrix, multiplyMatrices(pitchMatrix, yawMatrix));
 
-	Vec3d translatedVector = *this - origin; // 
 
 	// Rotate the vector
-	float newX = rotationMatrix[0][0] * x + rotationMatrix[0][1] * y + rotationMatrix[0][2] * z;
-	float newY = rotationMatrix[1][0] * x + rotationMatrix[1][1] * y + rotationMatrix[1][2] * z;
-	float newZ = rotationMatrix[2][0] * x + rotationMatrix[2][1] * y + rotationMatrix[2][2] * z;
+	float newX = rotationMatrix[0][0] * translatedVector.x + rotationMatrix[0][1] * translatedVector.y + rotationMatrix[0][2] * translatedVector.z;
+	float newY = rotationMatrix[1][0] * translatedVector.x + rotationMatrix[1][1] * translatedVector.y + rotationMatrix[1][2] * translatedVector.z;
+	float newZ = rotationMatrix[2][0] * translatedVector.x + rotationMatrix[2][1] * translatedVector.y + rotationMatrix[2][2] * translatedVector.z;
 
-	Vec3d rotatedVector(newX, newY, newZ);
+	Vec3d rotatedVector = Vec3d(newX, newY, newZ) + origin;
 
-	return rotatedVector + origin;
+	return rotatedVector;
 
 }
 
@@ -133,18 +132,24 @@ float Vec3d::distanceTo(const Vec3d& other) const
 // --~-- Implement Rotator3d --~--
 
 	// Constructor
-Rotator3d::Rotator3d(float roll, float pitch, float yaw) : Vec3d::Vec3d(roll, pitch, yaw) {}
+Rotator3d::Rotator3d(float roll, float pitch, float yaw) :
+	roll(roll),
+	pitch(pitch),
+	yaw(yaw),
+	Vec3d::Vec3d(roll, pitch, yaw)
+{
+}
 
 // Methods
 Rotator3d Rotator3d::toRad()
 {
 
-	return Rotator3d(x * PI / 180.0f, y * PI / 180.0f, z * PI / 180.0f);
+	return Rotator3d(roll * PI / 180.0f, pitch * PI / 180.0f, yaw * PI / 180.0f);
 }
 Rotator3d Rotator3d::toDeg()
 {
 
-	return Rotator3d(x * 180 / PI, y * 180 / PI, z * 180 / PI);
+	return Rotator3d(roll * 180 / PI, pitch * 180 / PI, yaw * 180 / PI);
 }
 
 // Helpers

@@ -175,62 +175,48 @@
 				exit(0);
 			}
 
-			//// Rotations
-			//else if (key == 'q') // Pitch up
-			//{
-
-			//	std::cout << "Pitch Up.." << std::endl;
-			//	camera.location.x += 15;
-			//	flag = true;
-			//}
-			//else if (key == 'w') // Yaw up
-			//{
-
-			//	std::cout << "Yaw Up.." << std::endl;
-			//	camera.location.y -= 5;
-			//	flag = true;
-			//}
-			//else if (key == 'e') // Roll up
-			//{
-
-			//	std::cout << "Roll Up.." << std::endl;
-			//	camera.location.z -= 5;
-			//	flag = true;
-			//}
-			//else if (key == 'a') // Pitch down
-			//{
-
-			//	std::cout << "Pitch Down.." << std::endl;
-			//	camera.location.x -= 5;
-			//	flag = true;
-			//}
-			//else if (key == 's') // Yaw down
-			//{
-
-			//	std::cout << "Yaw Down.." << std::endl;
-			//	camera.location.y += 5;
-			//	flag = true;
-			//}
-			//else if (key == 'd') // Roll down
-			//{
-
-			//	std::cout << "Roll Down.." << std::endl;
-			//	camera.location.z += 5;
-			//	flag = true;
-			//}
-			//else if (key == 'z') // Reset Orientation
-			//{
-
-			//	std::cout << "Yaw Down.." << std::endl;
-			//	camera.location.x = 0;
-			//	camera.location.y = 0;
-			//	camera.location.z = 0;
-			//	flag = true;
-			//}
-			//if (flag);
-			//{
-
-			//	camera.calculateMVecs();
-			//}
+			// Rotations
+			else if (key == 'q')
+			{
+				camera.rotation.roll += 5;
+				flag = true;
+			}
+			else if (key == 'w')
+			{
+				camera.rotation.pitch -= 5;
+				flag = true;
+			}
+			else if (key == 'e')
+			{
+				camera.rotation.yaw -= 5;
+				flag = true;
+			}
+			else if (key == 'a')
+			{
+				camera.rotation.roll -= 5;
+				flag = true;
+			}
+			else if (key == 's')
+			{
+				camera.rotation.pitch += 5;
+				flag = true;
+			}
+			else if (key == 'd')
+			{
+				camera.rotation.yaw += 5;
+				flag = true;
+			}
+			else if (key == 'z') // Reset Orientation
+			{
+				std::cout << "Yaw Down.." << std::endl;
+				camera.rotation.roll = 0;
+				camera.rotation.pitch = 0;
+				camera.rotation.yaw = 0;
+				flag = true;
+			}
+			if (flag);
+			{
+				camera.calculateMVecs();
+			}
 		}
 	}

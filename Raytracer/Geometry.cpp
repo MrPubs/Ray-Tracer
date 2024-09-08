@@ -94,8 +94,9 @@
 // --~-- Implement GeomObj --~--
 
 	// Constructor
-	GeomObj::GeomObj(std::vector<Triangle> members): 
+	GeomObj::GeomObj(std::vector<Triangle> members) :
 		members(members),
+		rotation(Rotator3d(0, 0, 0)),
 		origin(members[0].vertices[0])
 	{
 	
@@ -107,4 +108,25 @@
 
 		members.insert(members.end(), new_members.begin(), new_members.end());
 		return true;
+	}
+	void GeomObj::setRotation(const Rotator3d& new_rotation)
+	{
+
+		// Every Triangle
+		for (Triangle t : members)
+		{
+
+			// Every Vertex
+			for (Point3d v : t.vertices)
+			{
+
+				// Rotate and set
+				v = v.rotate(origin, new_rotation);
+
+			}
+		}
+
+		rotation.roll = new_rotation.roll;
+		rotation.pitch = new_rotation.pitch;
+		rotation.yaw = new_rotation.yaw;
 	}

@@ -40,10 +40,12 @@ public:
 	// Attributes
 	std::vector<Triangle> members;
 	Point3d origin;
+	Rotator3d rotation;
 
 	// Constructor
 	GeomObj(std::vector<Triangle> members);
 
 	// Methods
 	bool Expand(const std::vector<Triangle>& new_members); // Expand GeomObj	
+	void setRotation(const Rotator3d& new_rotation);
 };
