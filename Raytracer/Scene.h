@@ -17,30 +17,34 @@ class Camera
 {
 public:
 
-	// Attributes
+	// Perspective
+	int width, height;
+	float fov, img_d;
+
+	// Transform
 	Point3d location;
 	Rotator3d rotation;
 
-	int width, height, framerate;
-	int frametime; // in ms
-
+	// Frame
 	Scene& scene;
 	std::vector<cv::Vec3b> frame;
 	std::vector<float> zbuffer;
 	std::vector<Vec3d> mvecs;
-
 	std::vector<Ray> rays;
 
 	// Constructor
-	Camera(Point3d location, Rotator3d, Scene& scene, int width, int height, int framerate);
+	Camera(int width, int height, float fov, Point3d location, Rotator3d rotation, Scene& scene);
 
 	// Update Frame
 	void updateFrame();
 
 	// Post Process Frame
 	void applyPP();
+	
+	// Calculate Image Distance
+	void calculateImageDistance();
 
-	// calculateMVecs
+	// Calculate MVecs
 	void calculateMVecs();
 };
 

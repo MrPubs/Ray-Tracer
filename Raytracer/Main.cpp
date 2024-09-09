@@ -13,22 +13,24 @@ int main()
 {
 
     // Controls
-    const int width = 300;
-    const int height = 300;
+    const float aspect_ratio = 16 / 9.0f;
+    const int width = 640;
+    const int height = width/aspect_ratio;
+
     const int framerate = 24;
+    const int fov = 90;
 
     // Set up Scene
     std::vector<GeomObj> geomObjs;
     Scene scene(geomObjs);
    
-    GeomObj gob1 = MakeFallenPyramid(Point3d(0, 0, 3), 4, -2);
+    GeomObj gob1 = MakeFallenPyramid(Point3d(0, 0, 10), 4, -2);
     scene.expand(gob1);
 
     // Set Up Camera
     Point3d location(0, 0, 0);
     Rotator3d rotation(0, 0, 0);
-    Camera camera(location, rotation, scene, width, height, framerate);
- 
+    Camera camera(width, height, fov, location, rotation, scene);
 
     // Set up Viewport
     Viewport viewport(camera);

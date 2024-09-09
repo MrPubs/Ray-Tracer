@@ -5,20 +5,20 @@
 #include <algorithm>
 #include <opencv2.4/opencv2/opencv.hpp>
 #include<cstdlib>
+#include <chrono>
 
 #include "Scene.h"
 
 // --~-- Implement Camera --~--
 	
 	// Constructor
-	Camera::Camera(Point3d location, Rotator3d rotation, Scene& scene, int width, int height, int framerate):
-		location(location),
-		rotation(rotation),
-
-		scene(scene),
+	Camera::Camera(int width, int height, float fov, Point3d location, Rotator3d rotation, Scene& scene) :
 		width(width),
 		height(height),
-		framerate(framerate),
+		fov(fov),
+		location(location),
+		rotation(rotation),
+		scene(scene),
 
 		frame(width*height, cv::Vec3b(250,206,135)),
 		zbuffer(width*height, 0.0f),
@@ -27,13 +27,16 @@
 
 	{
 		
+		// Update Image Plane Distance
+		calculateImageDistance();
+
 		// Update MVecs
 		calculateMVecs();
 	}
 
+	// Update Frame
 	void Camera::updateFrame()
 	{
-		std::cout << rotation.x << " " << rotation.y << " " << rotation.z << std::endl;
 
 		// Reset Frame
 		std::fill(frame.begin(), frame.end(), cv::Vec3b(235, 206, 135));
@@ -84,6 +87,14 @@
 			}
 		}
 	}
+	
+	// Calculate Image Distance
+	void Camera::calculateImageDistance()
+	{
+		const float PI = 3.141592653589793f; // TODO: Fix cmath not recognizing the M_PI Identifier
+		img_d = (width/2.0f)/(std::tan(fov/2.0f * PI / 180.0f));
+
+	}
 
 	// Calculate MVecs
 	void Camera::calculateMVecs()
@@ -97,7 +108,7 @@
 			{
 
 				// Calculate Slope..
-				mvecs[row * width + col] = Vec3d((col - width / 2)*0.02, (height / 2 - row) * 0.02, 1).rotate(location, rotation.toRad());
+				mvecs[row * width + col] = Vec3d((col - width / 2)*1, (height / 2 - row) * 1, img_d).rotate(location, rotation.toRad());
 
 			}
 		}
@@ -142,14 +153,15 @@
 		while (true)
 		{
 
+			auto start = std::chrono::system_clock::now();
 			frameno++;
-			std::cout << "Frame #" << frameno << std::endl;
+			
 
 			// Update Frame
 			camera.updateFrame();
 
 			// Post Process
-			camera.applyPP();
+			//camera.applyPP();
 
 			// Display Image
 			cv::imshow("Raytracing Viewport", image);
@@ -158,13 +170,19 @@
 			//checkInput();
 
 
-			// testers
-			camera.scene.geomObjs[0].setRotation(Rotator3d(
-				2,
-				2,
-				2)
+			//// testers
+			camera.scene.geomObjs[0].setRotation(Rotator3d
+			(
+				2, 2, 2)
 			);
-			cv::waitKey(camera.framerate);
+			cv::waitKey(24);
+
+			auto end = std::chrono::system_clock::now();
+			std::chrono::duration<double> elapsed_seconds = end - start;
+
+			auto time = elapsed_seconds.count();
+			system("cls");
+			std::cout << "Frame #" << frameno << "(" << time << " ms) [" << 1/time << " FPS]" << std::endl;
 
 		}
 	}
@@ -174,7 +192,7 @@
 	{
 		float x = camera.scene.geomObjs[0].rotation.roll;
 		bool flag = false;
-		int key = cv::waitKey();
+		int key = cv::waitKey(24);
 		if (key >= 0)
 		{
 
