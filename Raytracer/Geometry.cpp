@@ -48,18 +48,18 @@
 		bool sideC = sameSide(pt, 2);
 		return (sideA && sideB && sideC);
 	}
+
 	bool Triangle::sameSide(const Point3d& pt, int vertex_ind)
 	{
 		int vec_start = (vertex_ind + 1) % 3;
 		int vec_end   = (vertex_ind + 2) % 3;
-
 		Vec3d v = vertices[vec_start] - vertices[vec_end];
 		Vec3d a = v.cross(Vec3d(pt - vertices[vec_end]));
 		Vec3d b = v.cross(Vec3d(vertices[vertex_ind] - vertices[vec_end]));
 		float c = a * b;
-
 		return c >= 0 ;
 	}
+
 
 	// Methods
 	void Triangle::initialize()
@@ -80,7 +80,7 @@
 	void Triangle::setExtents()
 	{
 
-		for (Point3d vertex : vertices)
+		for (Point3d& vertex : vertices)
 		{
 
 			// Min ext
