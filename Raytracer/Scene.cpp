@@ -160,6 +160,9 @@
 			// Update Frame
 			camera.updateFrame();
 
+			auto end = std::chrono::system_clock::now();
+			std::chrono::duration<double> elapsed_seconds = end - start;
+
 			// Post Process
 			//camera.applyPP();
 
@@ -169,20 +172,17 @@
 			// Wait & Check for Exit
 			//checkInput();
 
+			auto time = elapsed_seconds.count();
+			system("cls");
+			std::cout << "Frame #" << frameno << "(" << time << " s) [" << 1 / time << " FPS]" << std::endl;
 
 			//// testers
 			camera.scene.geomObjs[0].setRotation(Rotator3d
 			(
 				2, 2, 2)
 			);
-			cv::waitKey(24);
+			cv::waitKey(1);
 
-			auto end = std::chrono::system_clock::now();
-			std::chrono::duration<double> elapsed_seconds = end - start;
-
-			auto time = elapsed_seconds.count();
-			system("cls");
-			std::cout << "Frame #" << frameno << "(" << time << " ms) [" << 1/time << " FPS]" << std::endl;
 
 		}
 	}

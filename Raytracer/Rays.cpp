@@ -25,11 +25,11 @@
 		Point3d hit_pt({ 0,0,0 });
 
 		// Every Objects..
-		for (GeomObj obj : camera.scene.geomObjs)
+		for (GeomObj& obj : camera.scene.geomObjs)
 		{
 
 			// Every Triangle
-			for (Triangle t : obj.members)
+			for (Triangle& t : obj.members)
 			{
 				
 				// Check if hit Plane:
@@ -74,10 +74,5 @@
 			}
 		}
 
-		// Change Pixel Color
-		//pixel[0] = pixel[0] + 0; // B
-		//pixel[1] = pixel[1] + 5; // G
-		//pixel[2] = pixel[2] + 0; // R
-	
 		return true;
 	}
