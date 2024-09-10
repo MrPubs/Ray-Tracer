@@ -41,23 +41,21 @@
 		//    /_______\
 		//  pt0   C   pt1
 		//
-		
-		// Per Side
-		bool sideA = sameSide(pt, 0);
-		bool sideB = sameSide(pt, 1);
-		bool sideC = sameSide(pt, 2);
-		return (sideA && sideB && sideC);
+
+		return (sameSide(pt, 0) && sameSide(pt, 1) && sameSide(pt, 2));
 	}
 
 	bool Triangle::sameSide(const Point3d& pt, int vertex_ind)
 	{
-		int vec_start = (vertex_ind + 1) % 3;
-		int vec_end   = (vertex_ind + 2) % 3;
-		Vec3d v = vertices[vec_start] - vertices[vec_end];
-		Vec3d a = v.cross(Vec3d(pt - vertices[vec_end]));
-		Vec3d b = v.cross(Vec3d(vertices[vertex_ind] - vertices[vec_end]));
-		float c = a * b;
-		return c >= 0 ;
+		const int vec_start_ind = (vertex_ind + 1) % 3;
+		const int vec_end_ind   = (vertex_ind + 2) % 3;
+		const Vec3d& vec_end = vertices[vec_end_ind];
+		const Vec3d v = vertices[vec_start_ind] - vec_end;
+
+		const Vec3d a = v.cross((pt - vec_end));
+		const Vec3d b = v.cross((vertices[vertex_ind] - vec_end));
+
+		return a * b >= 0 ;
 	}
 
 
