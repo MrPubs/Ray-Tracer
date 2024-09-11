@@ -1,1 +1,5 @@
-﻿  Raytracer.vcxproj -> C:\Users\zivgr\Documents\Repos\Ray-Tracer\x64\Debug\Raytracer.exe
+﻿  Main.cpp
+C:\Users\zivgr\Documents\Repos\Ray-Tracer\Raytracer\Main.cpp(18,29): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Raytracer.vcxproj -> C:\Users\zivgr\Documents\Repos\Ray-Tracer\x64\Debug\Raytracer.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.

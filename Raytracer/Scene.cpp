@@ -4,8 +4,9 @@
 #include <iostream>
 #include <algorithm>
 #include <opencv2.4/opencv2/opencv.hpp>
-#include<cstdlib>
+#include <cstdlib>
 #include <chrono>
+#include <future>
 
 #include "Scene.h"
 
@@ -37,30 +38,49 @@
 	// Update Frame
 	void Camera::updateFrame()
 	{
-
 		// Reset Frame
 		std::fill(frame.begin(), frame.end(), cv::Vec3b(235, 206, 135));
 
 		// Reset Zbuffer
 		std::fill(zbuffer.begin(), zbuffer.end(), 0.0f);
 
-		// Render frame..
+		// Vector to hold the threads
+		std::vector<std::thread> threads;
+
+		// Calculate the number of rows each thread should handle
+		const int numThreads = std::thread::hardware_concurrency();
+		int rowsPerThread = height / numThreads;
+
+		// Launch threads
+		for (int t = 0; t < numThreads; ++t)
+		{
+			int startRow = t * rowsPerThread;
+			int endRow = (t == numThreads - 1) ? height : startRow + rowsPerThread;
+
+			// Launch a thread to process this chunk of rows
+			threads.emplace_back(&Camera::processRows, this, startRow, endRow);
+		}
+
+		// Wait for all threads to finish
+		for (auto& thread : threads)
+		{
+			thread.join();  // Block until each thread has completed
+		}
+	}
+
+	// Function to process a range of rows in parallel
+	void Camera::processRows(int startRow, int endRow)
+	{
 		for (int col = 0; col < width; col++)
 		{
-			for (int row = 0; row < height; row++)
-			{	
-
-				// Flat arrays index
+			for (int row = startRow; row < endRow; row++)
+			{
 				int index = row * width + col;
-				
-				// Calculate Pixel based on Ray Casting
+
+				// Cast the ray
 				rays[index].castRay(row, col, *this);
-
 			}
-
 		}
-		return;
-
 	}
 
 	// Apply Post Process to Frame

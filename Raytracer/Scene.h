@@ -35,8 +35,11 @@ public:
 	// Constructor
 	Camera(int width, int height, float fov, Point3d location, Rotator3d rotation, Scene& scene);
 
+
+
 	// Update Frame
 	void updateFrame();
+	void processRows(int startRow, int endRow);
 
 	// Post Process Frame
 	void applyPP();
