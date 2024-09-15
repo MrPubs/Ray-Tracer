@@ -27,10 +27,6 @@
  	}
 
 	// Querying
-	bool Triangle::isIntersecting(const Point3d& pt)
-	{	
-		return true;
-	}
 	bool Triangle::isInside(const Point3d& pt)
 	{
 		//

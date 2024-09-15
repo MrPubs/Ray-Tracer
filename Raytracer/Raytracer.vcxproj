@@ -137,6 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Helpers.cpp" />
+    <ClCompile Include="Lighting.cpp" />
     <ClCompile Include="Materials.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Main.cpp" />
@@ -146,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Helpers.h" />
+    <ClInclude Include="Lighting.h" />
     <ClInclude Include="Materials.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Rays.h" />

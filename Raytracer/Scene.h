@@ -8,6 +8,7 @@
 #include "Rays.h"
 #include "Geometry.h"
 #include "Vectors.h"
+#include "Lighting.h"
 
 // Forward Declaration
 class Scene;
@@ -30,7 +31,7 @@ public:
 	std::vector<cv::Vec3b> frame;
 	std::vector<float> zbuffer;
 	std::vector<Vec3d> mvecs;
-	std::vector<Ray> rays;
+	std::vector<PrimaryRay> rays;
 
 	// Constructor
 	Camera(int width, int height, float fov, Point3d location, Rotator3d rotation, Scene& scene);
@@ -59,13 +60,14 @@ public:
 
 	// Attributes
 	std::vector<GeomObj>& geomObjs; // All Present Geometric Objects
-	  // Light Sources
+	std::vector<PointLight>& lightObjs; // All Present Light Objects
 
 	// Constructor
-	Scene(std::vector<GeomObj>& geomObjs);
+	Scene(std::vector<GeomObj>& geomObjs, std::vector<PointLight>& lightObjs);
 
 	// Methods
 	bool expand(const GeomObj& obj);
+	bool expand(const PointLight& obj);
 };
 
 

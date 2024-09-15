@@ -24,7 +24,6 @@ public:
 	Triangle(std::array<Point3d, 3> vertices, Material material = Material({ 255, 0, 0 }));
 
 	// Querying
-	bool isIntersecting(const Point3d& pt);
 	bool isInside(const Point3d& pt);
 	bool sameSide(const Point3d& pt, int vertex_ind);
 

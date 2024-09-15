@@ -4,10 +4,10 @@
 #include "Rays.h"
 #include "Scene.h"
 
-// Implement Ray
+// Implement PrimaryRay
 
 	// Constructor
-	Ray::Ray(cv::Vec3b pixel):
+	PrimaryRay::PrimaryRay(cv::Vec3b pixel):
 		pixel(pixel),
 		iter(0)
 	{
@@ -15,8 +15,8 @@
 	}
 
 
-	// Ray Casting, Calculate Pixel Color.
-	bool Ray::castRay(const int row, const int col, Camera& camera)
+	// PrimaryRay Casting, Calculate Pixel Color.
+	void PrimaryRay::cast(const int row, const int col, Camera& camera)
 	{
 		// Params
 		iter++;
@@ -46,7 +46,7 @@
 						(hit_pt.z <= t.max_ext.z && hit_pt.z >= t.min_ext.z))    // Check for hit z in Triangle Bounding Box Extent
 					{
 						
-						// Check if Hit actual Triangle!
+						// Valid Intersection - PrimaryRay Hit Inside Triangle!
 						if (t.isInside(hit_pt))
 						{
 
@@ -64,6 +64,11 @@
 								pixel[1] = t.material.color.y; // G
 								pixel[2] = t.material.color.x; // R
 
+								// Cast Shadow Rays
+								// Shade based on angle
+
+
+								// Update Pixel Color
 								camera.frame[ray_ind] = pixel;
 
 								continue;
@@ -74,5 +79,20 @@
 			}
 		}
 
-		return true;
+		return;
+	}
+
+
+// Implement ShadowRay
+
+	// Constructor
+	ShadowRay::ShadowRay()
+	{
+
+	}
+
+	// Methods
+	void ShadowRay::cast()
+	{
+
 	}

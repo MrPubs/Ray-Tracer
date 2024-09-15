@@ -6,26 +6,32 @@
 #include "Scene.h"
 #include "Geometry.h"
 #include "Helpers.h"
+#include "Lighting.h"
+
 // Helpers
 //#include "Helpers.h"
 
 int main()
 {
 
-    // Controls
+    // Parameters
     const float aspect_ratio = 16 / 9.0f;
     const int width = 640;
     const int height = width/aspect_ratio;
-
     const int framerate = 24;
     const int fov = 90;
 
     // Set up Scene
     std::vector<GeomObj> geomObjs;
-    Scene scene(geomObjs);
+    std::vector<PointLight> lightObjs;
+    Scene scene(geomObjs, lightObjs);
    
+    // Expand Scene
     GeomObj gob1 = MakeFallenPyramid(Point3d(0, 0, 10), 4, -2);
     scene.expand(gob1);
+   
+    PointLight plob1(Point3d(0,10,0),Rotator3d(0,0,0), 10);
+    scene.expand(plob1);
 
     // Set Up Camera
     Point3d location(0, 0, 0);

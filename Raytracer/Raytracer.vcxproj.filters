@@ -54,6 +54,9 @@
     <ClCompile Include="Rays.cpp">
       <Filter>Source Files\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Lighting.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Helpers.h">
@@ -73,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="Vectors.h">
       <Filter>Header Files\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="Lighting.h">
+      <Filter>Header Files\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

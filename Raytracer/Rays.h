@@ -7,8 +7,8 @@
 // Forward Declarations
 class Camera;
 
-// Declare Rays
-class Ray
+// Declare PrimaryRay
+class PrimaryRay
 {
 
 public:
@@ -17,10 +17,24 @@ public:
 	cv::Vec3b pixel;
 	int iter;
 
-	// Cons & Dest
-	Ray(cv::Vec3b pixel = { 0,0,0 });
+	// Constructor
+	PrimaryRay(cv::Vec3b pixel = { 0,0,0 });
 	
 	// Methods
-	bool castRay(const int row,const int col, Camera& camera);
+	void cast(const int row,const int col, Camera& camera);
+
+};
+
+// Declare ShadowRay
+class ShadowRay
+{
+
+	// Attributes
+
+	// Constructor
+	ShadowRay();
+
+	// Methods
+	void cast();
 
 };

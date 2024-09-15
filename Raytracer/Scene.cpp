@@ -24,7 +24,7 @@
 		frame(width*height, cv::Vec3b(250,206,135)),
 		zbuffer(width*height, 0.0f),
 		mvecs(width*height, Vec3d(0,0,0)),
-		rays(width*height, Ray())
+		rays(width*height, PrimaryRay())
 
 	{
 		
@@ -77,8 +77,8 @@
 			{
 				int index = row * width + col;
 
-				// Cast the ray
-				rays[index].castRay(row, col, *this);
+				// Cast the PrimaryRay
+				rays[index].cast(row, col, *this);
 			}
 		}
 	}
@@ -141,8 +141,9 @@
 // --~-- Implement Scene --~--
 	
 	// Constructor
-	Scene::Scene(std::vector<GeomObj>& geomObjs):
-		geomObjs(geomObjs)
+	Scene::Scene(std::vector<GeomObj>& geomObjs, std::vector<PointLight>& lightObjs):
+		geomObjs(geomObjs),
+		lightObjs(lightObjs)
 	{
 
 	}
@@ -152,6 +153,14 @@
 	{
 
 		geomObjs.push_back(obj);
+		return true;
+	}	
+	
+	// Add LightObj to lightObjs
+	bool Scene::expand(const PointLight& obj)
+	{
+
+		lightObjs.push_back(obj);
 		return true;
 	}
 
