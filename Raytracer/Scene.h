@@ -30,7 +30,6 @@ public:
 	Scene& scene;
 	std::vector<cv::Vec3b> frame;
 	std::vector<float> zbuffer;
-	std::vector<Vec3d> mvecs;
 	std::vector<PrimaryRay> rays;
 
 	// Constructor
@@ -49,7 +48,7 @@ public:
 	void calculateImageDistance();
 
 	// Calculate MVecs
-	void calculateMVecs();
+	void SetRaysDirection();
 };
 
 

@@ -10,13 +10,15 @@ class PointLight
 public:
 
 	// Attributes 
-	Point3d origin;
+	Point3d location;
 	Rotator3d rotation;
 	float intensity;
+	float range;
 
 	// Constructor
-	PointLight(Point3d origin, Rotator3d rotation, float intensity);
+	PointLight(Point3d location, Rotator3d rotation, float intensity, float range);
 
 	// Methods
 	void setIntensity(const float intensity);
+	void setRange(const float range);
 };

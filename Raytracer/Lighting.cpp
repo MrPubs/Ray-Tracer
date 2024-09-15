@@ -6,10 +6,11 @@
 // --~-- Implement PointLight --~--
 	
 	// Construct
-	PointLight::PointLight(Point3d origin, Rotator3d rotation, float intensity) :
-		origin(origin),
+	PointLight::PointLight(Point3d location, Rotator3d rotation, float intensity, float range) :
+		location(location),
 		rotation(rotation),
-		intensity(intensity)
+		intensity(intensity),
+		range(range)
 	{
 
 	}
@@ -19,4 +20,9 @@
 	{
 
 		this->intensity = intensity;
+	}
+	void PointLight::setRange(const float range)
+	{
+
+		this->range = range;
 	}

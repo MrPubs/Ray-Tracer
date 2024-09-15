@@ -23,16 +23,15 @@
 
 		frame(width*height, cv::Vec3b(250,206,135)),
 		zbuffer(width*height, 0.0f),
-		mvecs(width*height, Vec3d(0,0,0)),
-		rays(width*height, PrimaryRay())
+		rays(width*height, PrimaryRay(scene, location))
 
 	{
-		
+
 		// Update Image Plane Distance
 		calculateImageDistance();
 
 		// Update MVecs
-		calculateMVecs();
+		SetRaysDirection();
 	}
 
 	// Update Frame
@@ -78,7 +77,7 @@
 				int index = row * width + col;
 
 				// Cast the PrimaryRay
-				rays[index].cast(row, col, *this);
+				rays[index].cast(*this);
 			}
 		}
 	}
@@ -117,7 +116,7 @@
 	}
 
 	// Calculate MVecs
-	void Camera::calculateMVecs()
+	void Camera::SetRaysDirection()
 	{
 
 		std::cout << "Calculating MVecs.." << std::endl;
@@ -128,7 +127,7 @@
 			{
 
 				// Calculate Slope..
-				mvecs[row * width + col] = Vec3d((col - width / 2)*1, (height / 2 - row) * 1, img_d).rotate(location, rotation.toRad());
+				rays[row * width + col].direction = Vec3d((col - width / 2)*1, (height / 2 - row) * 1, img_d).rotate(location, rotation.toRad());
 
 			}
 		}
@@ -283,7 +282,7 @@
 			{
 
 				// Commit Camera Change
-				camera.calculateMVecs();
+				camera.SetRaysDirection();
 
 				for (GeomObj& obj : camera.scene.geomObjs)
 				{
