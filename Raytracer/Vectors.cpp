@@ -41,6 +41,17 @@ Vec3d Vec3d::operator*(float factor) const
 	return Vec3d(x * factor, y * factor, z * factor);
 }
 
+// Equate
+bool Vec3d::operator==(const Vec3d& other) const
+{
+	
+	return (
+		x == other.x &&
+		y == other.y &&
+		z == other.z
+		);
+}
+
 // Cross Product
 Vec3d Vec3d::cross(const Vec3d& other) const
 {
@@ -108,6 +119,14 @@ float Vec3d::distanceTo(const Vec3d& other) const
 {
 
 	return std::sqrt(std::pow(x - other.x, 2) + std::pow(y - other.y, 2) + std::pow(z - other.z, 2));
+}
+
+// Normalize
+Vec3d Vec3d::normalize() const
+{
+
+	float length = std::sqrt(x * x + y * y + z * z);
+	return Vec3d(x / length, y / length, z / length);
 }
 
 // --~-- Implement Point3d --~-- Deprecated Currently!

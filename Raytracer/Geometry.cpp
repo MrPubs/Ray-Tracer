@@ -26,6 +26,17 @@
 		setExtents();
  	}
 
+	// Operators
+	bool Triangle::operator==(const Triangle& other) const
+	{
+
+		return (
+			vertices[0] == other.vertices[0] &&
+			vertices[1] == other.vertices[1] &&
+			vertices[2] == other.vertices[2] 
+			);
+	}
+
 	// Querying
 	bool Triangle::isInside(const Point3d& pt)
 	{

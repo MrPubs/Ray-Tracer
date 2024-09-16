@@ -27,9 +27,10 @@ int main()
     Scene scene(geomObjs, lightObjs);
    
     // Expand Scene
-    GeomObj gob1 = MakeFallenPyramid(Point3d(0, 0, 10), 4, -2);
-    PointLight plob1(Point3d(0,10,0),Rotator3d(0,0,0), 10, 10);
-    scene.expand(gob1), scene.expand(plob1);
+    GeomObj gob1 = MakeFallenPyramid(Point3d(0, 0, 10), 4, 2);
+    PointLight plob1(Point3d(0,4,10),Rotator3d(0,0,0), 10, 10);
+    scene.expand(gob1);
+    scene.expand(plob1);
 
     // Set Up Camera
     Point3d location(0, 0, 0);

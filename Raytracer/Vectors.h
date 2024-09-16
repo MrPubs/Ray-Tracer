@@ -22,12 +22,14 @@ struct Vec3d
 	Vec3d operator+(const Vec3d& other) const;
 	Vec3d operator-(const Vec3d& other) const;
 	float operator*(const Vec3d& other) const;
-	Vec3d operator*(float scale) const;
+	Vec3d operator*(float scale) const;		  
+	bool operator==(const Vec3d& other) const;
 
 	// Methods
 	Vec3d cross(const Vec3d& other) const;
 	Vec3d rotate(const Vec3d origin, const Rotator3d& rotator) const;
 	float distanceTo(const Vec3d& other) const;
+	Vec3d normalize() const;
 };
 
 using Point3d = Vec3d;

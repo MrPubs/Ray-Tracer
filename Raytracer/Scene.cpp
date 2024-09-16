@@ -55,9 +55,10 @@
 		{
 			int startRow = t * rowsPerThread;
 			int endRow = (t == numThreads - 1) ? height : startRow + rowsPerThread;
+			std::array<Ray::HitDataVector, 2> hitDataVectors;
 
 			// Launch a thread to process this chunk of rows
-			threads.emplace_back(&Camera::processRows, this, startRow, endRow);
+			threads.emplace_back(&Camera::processRows, this, startRow, endRow, hitDataVectors);
 		}
 
 		// Wait for all threads to finish
@@ -68,7 +69,7 @@
 	}
 
 	// Function to process a range of rows in parallel
-	void Camera::processRows(int startRow, int endRow)
+	void Camera::processRows(int startRow, int endRow, std::array<Ray::HitDataVector, 2> primaryHits)
 	{
 		for (int col = 0; col < width; col++)
 		{
@@ -77,7 +78,7 @@
 				int index = row * width + col;
 
 				// Cast the PrimaryRay
-				rays[index].cast(*this);
+				rays[index].castPrimary(row, col, primaryHits, *this);
 			}
 		}
 	}
@@ -207,7 +208,9 @@
 			//// testers
 			camera.scene.geomObjs[0].setRotation(Rotator3d
 			(
-				2, 2, 2)
+				2, 
+				2, 
+				2)
 			);
 			cv::waitKey(1);
 

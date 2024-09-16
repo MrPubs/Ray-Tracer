@@ -22,24 +22,74 @@
 	Ray::Ray(Scene& scene, Point3d origin, Vec3d direction):
 		scene(scene),
 		origin(origin),
-		direction(direction)
+		direction(direction),
+		max_ray_length(0.0f)
 	{
 
 	}
 
 	// Methods
-	void Ray::cast(Camera& camera, bool quick)
+	bool Ray::cast(std::vector<Ray::HitData>& hits, bool quick)
 	{
-
-		// Result!
-		//std::vector<HitData> result;
 
 		// Params
 		Point3d hit_pt({ 0,0,0 });
 		float distance = 0.0f;
 
 		// Every Objects..
-		for (GeomObj& geometry : camera.scene.geomObjs)
+		for (GeomObj& geometry : scene.geomObjs)
+		{
+
+			// Every Triangle
+			for (Triangle& T : geometry.members)
+			{
+
+				// Check if hit Plane:
+				distance = -1 * (T.normal * origin + T.k) / (T.normal * direction);
+				if (!std::isinf(distance) && (distance > 0 && distance < max_ray_length || max_ray_length == 0 && distance > 0))
+				{
+
+					// Check hit Location
+					hit_pt = direction * distance + origin;
+
+					// Check for Triangle Bounding Box Extent
+					if ((hit_pt.x <= T.max_ext.x && hit_pt.x >= T.min_ext.x) && // Check for hit x in Triangle Bounding Box Extent
+						(hit_pt.y <= T.max_ext.y && hit_pt.y >= T.min_ext.y) && // Check for hit y in Triangle Bounding Box Extent
+						(hit_pt.z <= T.max_ext.z && hit_pt.z >= T.min_ext.z))   // Check for hit z in Triangle Bounding Box Extent
+					{
+
+						// Valid Intersection - Ray Triangle!
+						if (T.isInside(hit_pt))
+						{
+							// Started from the bottom now we here!
+
+							// Add to Result
+							hits.emplace_back(T, hit_pt, distance);
+
+							if (quick)
+							{
+
+								// Leave with First Hit
+								return hits.size() > 0;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// Leave with All Hits
+		return hits.size() > 0;
+	}
+	bool Ray::castdbg(std::vector<Ray::HitData>& hits, bool quick)
+	{
+
+		// Params
+		Point3d hit_pt({ 0,0,0 });
+		float distance = 0.0f;
+
+		// Every Objects..
+		for (GeomObj& geometry : scene.geomObjs)
 		{
 
 			// Every Triangle
@@ -65,14 +115,14 @@
 						{
 							// Started from the bottom now we here!
 
-							// Add Result
-							//result.push_back(HitData(T, hit_pt, distance));
-							
+							// Add to Result
+							hits.emplace_back(T, hit_pt, distance);
+
 							if (quick)
 							{
 
 								// Leave with First Hit
-								//return result;
+								return hits.size() > 0;
 							}
 						}
 					}
@@ -81,9 +131,8 @@
 		}
 
 		// Leave with All Hits
-		return;
+		return hits.size() > 0;
 	}
-
 
 // Implement PrimaryRay
 
@@ -101,59 +150,85 @@
 		for (int i = 0; i < lightObjs_Count; i++)
 		{
 			
-			shadowRays.emplace_back(ShadowRay(scene));
+			shadowRays.emplace_back(ShadowRay(scene, Point3d(0,0,0), Vec3d(0,0,0)));
 		}
 	}
 
 
 	// PrimaryRay Casting, Calculate Pixel Color.
-	void PrimaryRay::castPrimary(const int row, const int col, Camera& camera)
+	void PrimaryRay::castPrimary(const int row, const int col, std::array<Ray::HitDataVector, 2>& hitVectors, Camera& camera)
 	{
 
+		Ray::HitDataVector& primaryHits = hitVectors[0];
+		Ray::HitDataVector& shadowHits = hitVectors[1];
+		int light_source_count = camera.scene.lightObjs.size();
+
 		// Cast Ray Forward
-		//std::vector<Ray::HitData> result = cast(camera);
-		cast(camera);
+		if (cast(primaryHits))
+		{
 
-		// Check Hits
-		//int ray_ind = row * camera.width + col;
-		//for (const Ray::HitData& item : result)
-		//{
+			// Parameters
+			int ray_ind = row * camera.width + col;
 
-		//	// Get Tuple Breakdown
-		//	const Triangle T = std::get<0>(item);
-		//	const Vec3d hit_pt = std::get<1>(item);
-		//	const float distance = std::get<2>(item);
-		//	
-		//	// Check if closer than current pixel
-		//	if (camera.zbuffer[ray_ind] == 0 || distance < camera.zbuffer[ray_ind])
-		//	{
+			for (Ray::HitData& hitData : primaryHits)
+			{
 
-		//		// Update Z Buffer
-		//		camera.zbuffer[ray_ind] = distance;
+				//Check if closer than current pixel
+				if (camera.zbuffer[ray_ind] == 0 || hitData.distance < camera.zbuffer[ray_ind])
+				{
 
-		//		// Adjust Pixel - make better depth adjust function
-		//		pixel[0] = T.material.color.z; // B
-		//		pixel[1] = T.material.color.y; // G
-		//		pixel[2] = T.material.color.x; // R
+					// Update Z Buffer
+					camera.zbuffer[ray_ind] = hitData.distance;
 
-		//		// here goes shadow ray operation!
+					// Adjust Pixel - make better depth adjust function
+					pixel[0] = hitData.triangle.material.color.z; // B
+					pixel[1] = hitData.triangle.material.color.y; // G
+					pixel[2] = hitData.triangle.material.color.x; // R
 
-		//		// Update Pixel Color
-		//		camera.frame[ray_ind] = pixel;
-		//		continue;
 
-		//	}
-		//}
+					// Cast Shadow Rays to every light source thats in range
+					float lightFactor;
+					for (int i = 0; i < light_source_count; i++)
+					{
+
+						// Get Distance to Light Obj..
+						PointLight& light_object = camera.scene.lightObjs.at(i);
+						int distance = hitData.hit_pt.distanceTo(light_object.location);
+
+						// If in range..
+						if (distance < light_object.range || light_object.range == 0)
+						{
+
+							// Setup Ray
+							ShadowRay& shadow_ray = shadowRays[i];
+							shadow_ray.origin = hitData.hit_pt;
+							shadow_ray.direction = (light_object.location - shadow_ray.origin).normalize();
+							shadow_ray.max_ray_length = distance;
+
+							// Cast shadow!
+							lightFactor = shadow_ray.castShadow(shadowHits, hitData.triangle);
+						}
+					}
+
+					// Update Pixel Color
+					camera.frame[ray_ind] = pixel*lightFactor;
+				}
+			}
+
+			// Prepare for next Ray
+			primaryHits.clear();
+		}
+
 
 		// Temporary Remenants of old times!!
 		//// Cast Shadow Rays -----------------------
 		//for (int i = 0; i < light_source_count; i++)
 		//{
-
+		
 		//	// Get Distance to Light Obj..
 		//	PointLight light_object = camera.scene.lightObjs.at(i);
 		//	int distance = hit_pt.distanceTo(light_object.location);
-
+		
 		//	// If not too far..
 		//	if (distance < light_object.range)
 		//	{
@@ -170,17 +245,45 @@
 // Implement ShadowRay
 
 	// Constructor
-	ShadowRay::ShadowRay(Scene& scene):
-		origin(Point3d(0,0,0))
+	ShadowRay::ShadowRay(Scene& scene, Point3d origin, Vec3d direction):
+		Ray(scene, origin, direction)
 	{
 
 	}
 
 	// Methods
-	void ShadowRay::cast()
+	float ShadowRay::castShadow(Ray::HitDataVector& shadowHits, Triangle& originTriangle)
 	{
-
-		// Check if not blocked
+		// Result
+		float result = 0.1f;
 		
-		  // Calculate Shadow Ray Effect
+		// Check if blocked
+		if (!castdbg(shadowHits, true))
+		{
+			// Nothing hit means not blocking, do shadowing logic..
+			
+			// Set Lambertarian Shading
+			float lambertianShading = std::max(0.0f, originTriangle.normal.normalize() * direction);
+			result += lambertianShading;
+		}
+		else
+		{
+			
+			if (&originTriangle != &shadowHits[0].triangle)
+			{
+				// good!
+				result += 0;
+			}
+			else
+			{
+				// ???
+				result += 0;
+			}
+
+			// Clear Vector from hit
+			shadowHits.clear();
+			
+		}
+
+		return result;
 	}

@@ -17,6 +17,7 @@ class Ray
 {
 public:
 
+	// Datastructure Used for Communicating Hits Between Objects
 	struct HitData {
 		Triangle triangle;
 		Point3d hit_pt;
@@ -24,17 +25,20 @@ public:
 
 		HitData(Triangle triangle, Point3d hit_pt, float distance);
 	};
+	using HitDataVector = std::vector<Ray::HitData>;
 
 	// Attributes
 	Scene& scene;
 	Point3d origin;
 	Vec3d direction;
+	float max_ray_length;
 
 	// Constructor
 	Ray(Scene& scene, Point3d origin, Vec3d direction = Vec3d(0, 0, 0));
 
 	// Methods
-	void cast(Camera& camera, bool quick = false);
+	bool cast(std::vector<Ray::HitData>& hits, bool quick = false);
+	bool castdbg(std::vector<Ray::HitData>& hits, bool quick = false);
 
 };
 
@@ -52,22 +56,20 @@ public:
 	PrimaryRay(Scene& scene, Point3d origin, Vec3d direction = Vec3d(0, 0, 0), cv::Vec3b pixel = { 0,0,0 });
 	
 	// Methods
-	void castPrimary(const int row,const int col, Camera& camera);
+	void castPrimary(const int row, const int col, std::array<Ray::HitDataVector, 2>& hitVectors, Camera& camera);
 
 };
 
 // Declare ShadowRay
-class ShadowRay
+class ShadowRay : public Ray
 {
 
 public:
-	// Attributes
-	Point3d origin;
 
 	// Constructor
-	ShadowRay(Scene& scene);
+	ShadowRay(Scene& scene, Point3d origin, Vec3d direction);
 
 	// Methods
-	void cast();
+	float castShadow(Ray::HitDataVector& shadowHits, Triangle& originTriangle);
 
 };
