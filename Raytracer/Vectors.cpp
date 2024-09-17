@@ -119,6 +119,7 @@ float Vec3d::distanceTo(const Vec3d& other) const
 {
 
 	return std::sqrt(std::pow(x - other.x, 2) + std::pow(y - other.y, 2) + std::pow(z - other.z, 2));
+	//return std::pow(x - other.x, 2) + std::pow(y - other.y, 2) + std::pow(z - other.z, 2);
 }
 
 // Normalize

@@ -42,63 +42,19 @@
 
 			// Every Triangle
 			for (Triangle& T : geometry.members)
-			{
+			{	
+
+				// Check if origin in triangle
+				if (T.isInside(origin))
+				{
+					float a = T.normal * origin;
+					float b = a + T.k;
+					continue;
+				}
 
 				// Check if hit Plane:
 				distance = -1 * (T.normal * origin + T.k) / (T.normal * direction);
 				if (!std::isinf(distance) && (distance > 0 && distance < max_ray_length || max_ray_length == 0 && distance > 0))
-				{
-
-					// Check hit Location
-					hit_pt = direction * distance + origin;
-
-					// Check for Triangle Bounding Box Extent
-					if ((hit_pt.x <= T.max_ext.x && hit_pt.x >= T.min_ext.x) && // Check for hit x in Triangle Bounding Box Extent
-						(hit_pt.y <= T.max_ext.y && hit_pt.y >= T.min_ext.y) && // Check for hit y in Triangle Bounding Box Extent
-						(hit_pt.z <= T.max_ext.z && hit_pt.z >= T.min_ext.z))   // Check for hit z in Triangle Bounding Box Extent
-					{
-
-						// Valid Intersection - Ray Triangle!
-						if (T.isInside(hit_pt))
-						{
-							// Started from the bottom now we here!
-
-							// Add to Result
-							hits.emplace_back(T, hit_pt, distance);
-
-							if (quick)
-							{
-
-								// Leave with First Hit
-								return hits.size() > 0;
-							}
-						}
-					}
-				}
-			}
-		}
-
-		// Leave with All Hits
-		return hits.size() > 0;
-	}
-	bool Ray::castdbg(std::vector<Ray::HitData>& hits, bool quick)
-	{
-
-		// Params
-		Point3d hit_pt({ 0,0,0 });
-		float distance = 0.0f;
-
-		// Every Objects..
-		for (GeomObj& geometry : scene.geomObjs)
-		{
-
-			// Every Triangle
-			for (Triangle& T : geometry.members)
-			{
-
-				// Check if hit Plane:
-				distance = -1 * (T.normal * origin + T.k) / (T.normal * direction);
-				if (distance > 0)
 				{
 
 					// Check hit Location
@@ -159,6 +115,7 @@
 	void PrimaryRay::castPrimary(const int row, const int col, std::array<Ray::HitDataVector, 2>& hitVectors, Camera& camera)
 	{
 
+		// variable setup
 		Ray::HitDataVector& primaryHits = hitVectors[0];
 		Ray::HitDataVector& shadowHits = hitVectors[1];
 		int light_source_count = camera.scene.lightObjs.size();
@@ -187,7 +144,7 @@
 
 
 					// Cast Shadow Rays to every light source thats in range
-					float lightFactor;
+					float lightFactor = 0.1f;
 					for (int i = 0; i < light_source_count; i++)
 					{
 
@@ -218,27 +175,6 @@
 			// Prepare for next Ray
 			primaryHits.clear();
 		}
-
-
-		// Temporary Remenants of old times!!
-		//// Cast Shadow Rays -----------------------
-		//for (int i = 0; i < light_source_count; i++)
-		//{
-		
-		//	// Get Distance to Light Obj..
-		//	PointLight light_object = camera.scene.lightObjs.at(i);
-		//	int distance = hit_pt.distanceTo(light_object.location);
-		
-		//	// If not too far..
-		//	if (distance < light_object.range)
-		//	{
-		//		
-
-		//		// Cast Ray!
-		//	}
-
-		//}
-
 	}
 
 
@@ -255,34 +191,25 @@
 	float ShadowRay::castShadow(Ray::HitDataVector& shadowHits, Triangle& originTriangle)
 	{
 		// Result
-		float result = 0.1f;
+		float result = 0.2f;
 		
-		// Check if blocked
-		if (!castdbg(shadowHits, true))
+		// Check if not blocked
+		if (cast(shadowHits, true) == false)
 		{
-			// Nothing hit means not blocking, do shadowing logic..
 			
 			// Set Lambertarian Shading
 			float lambertianShading = std::max(0.0f, originTriangle.normal.normalize() * direction);
 			result += lambertianShading;
+
 		}
 		else
 		{
-			
-			if (&originTriangle != &shadowHits[0].triangle)
-			{
-				// good!
-				result += 0;
-			}
-			else
-			{
-				// ???
-				result += 0;
-			}
+
+			// good!
+			result += 0;
 
 			// Clear Vector from hit
 			shadowHits.clear();
-			
 		}
 
 		return result;

@@ -38,7 +38,6 @@ public:
 
 	// Methods
 	bool cast(std::vector<Ray::HitData>& hits, bool quick = false);
-	bool castdbg(std::vector<Ray::HitData>& hits, bool quick = false);
 
 };
 

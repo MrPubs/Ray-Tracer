@@ -66,6 +66,7 @@
 		{
 			thread.join();  // Block until each thread has completed
 		}
+
 	}
 
 	// Function to process a range of rows in parallel

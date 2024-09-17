@@ -28,7 +28,8 @@ int main()
    
     // Expand Scene
     GeomObj gob1 = MakeFallenPyramid(Point3d(0, 0, 10), 4, 2);
-    PointLight plob1(Point3d(0,4,10),Rotator3d(0,0,0), 10, 10);
+    gob1.setRotation(Rotator3d(0, 180, 0));
+    PointLight plob1(Point3d(0, 0, 0), Rotator3d(0, 0, 0), 20, 20);
     scene.expand(gob1);
     scene.expand(plob1);
 
