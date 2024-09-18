@@ -19,11 +19,11 @@ public:
 
 	// Datastructure Used for Communicating Hits Between Objects
 	struct HitData {
-		Triangle triangle;
+		Triangle* triangle_ptr;
 		Point3d hit_pt;
 		float distance;
 
-		HitData(Triangle triangle, Point3d hit_pt, float distance);
+		HitData(Triangle* triangle_ptr, Point3d hit_pt, float distance);
 	};
 	using HitDataVector = std::vector<Ray::HitData>;
 
@@ -37,7 +37,7 @@ public:
 	Ray(Scene& scene, Point3d origin, Vec3d direction = Vec3d(0, 0, 0));
 
 	// Methods
-	bool cast(std::vector<Ray::HitData>& hits, bool quick = false);
+	bool cast(std::vector<Ray::HitData>& hits, Triangle* avoidTriangle = nullptr, bool quick = false);
 
 };
 
@@ -69,6 +69,6 @@ public:
 	ShadowRay(Scene& scene, Point3d origin, Vec3d direction);
 
 	// Methods
-	float castShadow(Ray::HitDataVector& shadowHits, Triangle& originTriangle);
+	float castShadow(Ray::HitDataVector& shadowHits, Triangle* originTriangle_ptr);
 
 };

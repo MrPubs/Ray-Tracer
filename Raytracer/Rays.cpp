@@ -13,7 +13,7 @@
 
 	//};
 	
-	Ray::HitData::HitData(Triangle triangle, Point3d hit_pt, float distance): triangle(triangle), hit_pt(hit_pt), distance(distance)
+	Ray::HitData::HitData(Triangle* triangle_ptr, Point3d hit_pt, float distance): triangle_ptr(triangle_ptr), hit_pt(hit_pt), distance(distance)
 	{
 
 	};
@@ -29,7 +29,7 @@
 	}
 
 	// Methods
-	bool Ray::cast(std::vector<Ray::HitData>& hits, bool quick)
+	bool Ray::cast(std::vector<Ray::HitData>& hits, Triangle* avoidTriangle, bool quick)
 	{
 
 		// Params
@@ -44,11 +44,9 @@
 			for (Triangle& T : geometry.members)
 			{	
 
-				// Check if origin in triangle
-				if (T.isInside(origin))
+				// Check if the Triangle being looked at is classified as avoid!
+				if (&T == avoidTriangle)
 				{
-					float a = T.normal * origin;
-					float b = a + T.k;
 					continue;
 				}
 
@@ -72,7 +70,7 @@
 							// Started from the bottom now we here!
 
 							// Add to Result
-							hits.emplace_back(T, hit_pt, distance);
+							hits.emplace_back(&T, hit_pt, distance);
 
 							if (quick)
 							{
@@ -138,9 +136,10 @@
 					camera.zbuffer[ray_ind] = hitData.distance;
 
 					// Adjust Pixel - make better depth adjust function
-					pixel[0] = hitData.triangle.material.color.z; // B
-					pixel[1] = hitData.triangle.material.color.y; // G
-					pixel[2] = hitData.triangle.material.color.x; // R
+					Triangle& T = *hitData.triangle_ptr;
+					pixel[0] = T.material.color.z; // B
+					pixel[1] = T.material.color.y; // G
+					pixel[2] = T.material.color.x; // R
 
 
 					// Cast Shadow Rays to every light source thats in range
@@ -163,7 +162,7 @@
 							shadow_ray.max_ray_length = distance;
 
 							// Cast shadow!
-							lightFactor = shadow_ray.castShadow(shadowHits, hitData.triangle);
+							lightFactor = shadow_ray.castShadow(shadowHits, hitData.triangle_ptr);
 						}
 					}
 
@@ -188,13 +187,16 @@
 	}
 
 	// Methods
-	float ShadowRay::castShadow(Ray::HitDataVector& shadowHits, Triangle& originTriangle)
+	float ShadowRay::castShadow(Ray::HitDataVector& shadowHits, Triangle* originTriangle_ptr)
 	{
 		// Result
 		float result = 0.2f;
 		
+		// Triangle from which ray Originates
+		Triangle& originTriangle = *originTriangle_ptr;
+
 		// Check if not blocked
-		if (cast(shadowHits, true) == false)
+		if (cast(shadowHits, originTriangle_ptr, true) == false)
 		{
 			
 			// Set Lambertarian Shading
