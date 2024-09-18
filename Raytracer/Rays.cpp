@@ -117,6 +117,7 @@
 		Ray::HitDataVector& primaryHits = hitVectors[0];
 		Ray::HitDataVector& shadowHits = hitVectors[1];
 		int light_source_count = camera.scene.lightObjs.size();
+		float lightFactor;
 
 		// Cast Ray Forward
 		if (cast(primaryHits))
@@ -143,7 +144,7 @@
 
 
 					// Cast Shadow Rays to every light source thats in range
-					float lightFactor = 0.1f;
+					lightFactor = scene.environmentLight_level;
 					for (int i = 0; i < light_source_count; i++)
 					{
 
@@ -161,8 +162,16 @@
 							shadow_ray.direction = (light_object.location - shadow_ray.origin).normalize();
 							shadow_ray.max_ray_length = distance;
 
+							// TEST CONDITIONS!
+							if (T.material.color == Vec3d(255, 0, 0) && T.vertices[0].x < -3)
+							{
+
+								float a = shadow_ray.direction * direction;
+							}
+
+
 							// Cast shadow!
-							lightFactor = shadow_ray.castShadow(shadowHits, hitData.triangle_ptr);
+							lightFactor += shadow_ray.castShadow(shadowHits, hitData.triangle_ptr);
 						}
 					}
 
@@ -190,18 +199,22 @@
 	float ShadowRay::castShadow(Ray::HitDataVector& shadowHits, Triangle* originTriangle_ptr)
 	{
 		// Result
-		float result = 0.2f;
-		
-		// Triangle from which ray Originates
-		Triangle& originTriangle = *originTriangle_ptr;
+		float result = 0.0f;
 
 		// Check if not blocked
 		if (cast(shadowHits, originTriangle_ptr, true) == false)
 		{
 			
-			// Set Lambertarian Shading
-			float lambertianShading = std::max(0.0f, originTriangle.normal.normalize() * direction);
+			// Get origin Triangle
+			Triangle& originTriangle = *originTriangle_ptr;
+
+			// Calculate normal Direction based on direction of ray & direction of normal - if same direction set to 1.0f, if not same direction negate.
+			float normalDirection = (direction * originTriangle.normal > 0) ? 1.0f : -1.0f ;
+
+			// Set Lambertian Shadin
+			float lambertianShading = std::max(0.0f, originTriangle.normal.normalize() * direction * normalDirection);
 			result += lambertianShading;
+
 
 		}
 		else

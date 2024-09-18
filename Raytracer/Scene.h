@@ -60,13 +60,15 @@ public:
 	// Attributes
 	std::vector<GeomObj>& geomObjs; // All Present Geometric Objects
 	std::vector<PointLight>& lightObjs; // All Present Light Objects
+	float environmentLight_level = 0;
 
 	// Constructor
-	Scene(std::vector<GeomObj>& geomObjs, std::vector<PointLight>& lightObjs);
+	Scene(std::vector<GeomObj>& geomObjs, std::vector<PointLight>& lightObjs, float environmentLight_level = 0.2f);
 
 	// Methods
 	bool expand(const GeomObj& obj);
 	bool expand(const PointLight& obj);
+
 };
 
 
@@ -79,9 +81,10 @@ public:
 	Camera& camera;
 	cv::Mat image;
 	int frameno;
+	int framerate;
 
 	// Constructor
-	Viewport(Camera& camera);
+	Viewport(Camera& camera, int framerate);
 
 	// Work - Live Session Loop
 	void work();

@@ -1,11 +1,6 @@
 ﻿  Rays.cpp
 C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(100,23): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(119,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(140,33): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(140,33): warning C4244:         with
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(140,33): warning C4244:         [
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(140,33): warning C4244:             _Tp=uchar
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(140,33): warning C4244:         ]
 C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(141,33): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
 C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(141,33): warning C4244:         with
 C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(141,33): warning C4244:         [
@@ -16,40 +11,29 @@ C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,33): warning C424
 C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,33): warning C4244:         [
 C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,33): warning C4244:             _Tp=uchar
 C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,33): warning C4244:         ]
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(152,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(162,36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,33): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,33): warning C4244:         with
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,33): warning C4244:         [
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,33): warning C4244:             _Tp=uchar
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,33): warning C4244:         ]
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(153,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(163,36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Raytracer.vcxproj -> C:\Users\zivg\Documents\GHub\Ray-Tracer\x64\Debug\Raytracer.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
   Add-Content : Stream was not readable.
-  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:61 char:32
-  + ... FilesLog) { Add-Content $copiedFilesLog $targetBinaryFilePath -Encodi ...
+  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:62 char:26
+  + ... tlogFile) { Add-Content $tlogFile $targetBinaryFilePath -Encoding Uni ...
   +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...kg.applocal.log:String) [Add-Content], ArgumentExcep 
+      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], ArgumentExcep 
      tion
       + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
    
   Add-Content : Stream was not readable.
-  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:61 char:32
-  + ... FilesLog) { Add-Content $copiedFilesLog $targetBinaryFilePath -Encodi ...
+  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:62 char:26
+  + ... tlogFile) { Add-Content $tlogFile $targetBinaryFilePath -Encoding Uni ...
   +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...kg.applocal.log:String) [Add-Content], ArgumentExcep 
-     tion
-      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
-   
-  Add-Content : Stream was not readable.
-  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:61 char:32
-  + ... FilesLog) { Add-Content $copiedFilesLog $targetBinaryFilePath -Encodi ...
-  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...kg.applocal.log:String) [Add-Content], ArgumentExcep 
-     tion
-      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
-   
-  Add-Content : Stream was not readable.
-  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:61 char:32
-  + ... FilesLog) { Add-Content $copiedFilesLog $targetBinaryFilePath -Encodi ...
-  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...kg.applocal.log:String) [Add-Content], ArgumentExcep 
+      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], ArgumentExcep 
      tion
       + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
    

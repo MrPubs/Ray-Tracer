@@ -142,9 +142,10 @@
 // --~-- Implement Scene --~--
 	
 	// Constructor
-	Scene::Scene(std::vector<GeomObj>& geomObjs, std::vector<PointLight>& lightObjs):
+	Scene::Scene(std::vector<GeomObj>& geomObjs, std::vector<PointLight>& lightObjs, float environmentLight_level):
 		geomObjs(geomObjs),
-		lightObjs(lightObjs)
+		lightObjs(lightObjs),
+		environmentLight_level(environmentLight_level)
 	{
 
 	}
@@ -168,10 +169,11 @@
 // --~-- Implement Viewport --~--
 
 	// Constructor
-	Viewport::Viewport(Camera& camera):
+	Viewport::Viewport(Camera& camera, int framerate):
 		camera(camera),
 		image(cv::Mat(camera.height, camera.width, CV_8UC3, camera.frame.data())),
-		frameno(0)
+		frameno(0),
+		framerate(framerate)
 	{
 
 	}
@@ -202,18 +204,18 @@
 			// Wait & Check for Exit
 			//checkInput();
 
-			auto time = elapsed_seconds.count();
-			system("cls");
-			std::cout << "Frame #" << frameno << "(" << time << " s) [" << 1 / time << " FPS]" << std::endl;
-
-			//// testers
-			camera.scene.geomObjs[0].setRotation(Rotator3d
-			(
-				2, 
-				2, 
-				2)
-			);
+			
+			// testers
+			camera.scene.geomObjs[0].setRotation(Rotator3d(2.f, 0.f, 0.f));
+			camera.scene.geomObjs[1].setRotation(Rotator3d(1.f, 1.f, 1.f));
+			camera.scene.geomObjs[2].setRotation(Rotator3d(0.f, 2.f, 0.f));
 			cv::waitKey(1);
+
+			auto time = elapsed_seconds.count()*1000;
+			int sleeptime = (1000.0f / framerate) - time;
+			std::this_thread::sleep_for(std::chrono::milliseconds(sleeptime));
+			std::cout << "Frame #" << frameno << "(" << time+sleeptime << " ms) [" << 1000 / int(time+sleeptime) << " FPS]" << std::endl;
+			system("cls");
 
 
 		}

@@ -12,6 +12,7 @@
 class Camera;
 class Scene;
 class ShadowRay;
+class PointLight;
 
 class Ray
 {
