@@ -129,7 +129,7 @@
 			{
 
 				// Calculate Slope..
-				rays[row * width + col].direction = Vec3d((col - width / 2)*1, (height / 2 - row) * 1, img_d).rotate(location, rotation.toRad());
+				rays[row * width + col].direction = Vec3d((col - width / 2)*1, (height / 2 - row) * 1, img_d).rotate(location, rotation.toRad()).normalize();
 
 			}
 		}
@@ -211,10 +211,19 @@
 			camera.scene.geomObjs[2].setRotation(Rotator3d(0.f, 2.f, 0.f));
 			cv::waitKey(1);
 
-			auto time = elapsed_seconds.count()*1000;
-			int sleeptime = (1000.0f / framerate) - time;
-			std::this_thread::sleep_for(std::chrono::milliseconds(sleeptime));
-			std::cout << "Frame #" << frameno << "(" << time+sleeptime << " ms) [" << 1000 / int(time+sleeptime) << " FPS]" << std::endl;
+			// Framerate Control & announce
+			auto time = elapsed_seconds.count() * 1000;
+			if (framerate != 0) // --------------- reword if codeblock! not working...
+			{
+				int sleeptime = (1000.0f / framerate) - time;
+				std::this_thread::sleep_for(std::chrono::milliseconds(sleeptime));
+				std::cout << "Frame #" << frameno << "(" << time + sleeptime << " ms) [" << 1000 / int(time + sleeptime) << " FPS]" << std::endl;
+			}
+			else
+			{
+				std::cout << "Frame #" << frameno << "(" << time << " ms) [" << 1000 / int(time) << " FPS]" << std::endl;
+			}
+
 			system("cls");
 
 

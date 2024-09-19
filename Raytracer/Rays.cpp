@@ -162,16 +162,15 @@
 							shadow_ray.direction = (light_object.location - shadow_ray.origin).normalize();
 							shadow_ray.max_ray_length = distance;
 
-							// TEST CONDITIONS!
-							if (T.material.color == Vec3d(255, 0, 0) && T.vertices[0].x < -3)
+							// Check if surface is lit (looking at the side that is directed at the light)
+							bool litSurface = (shadow_ray.direction * T.normal > 0) == (direction.normalize() * T.normal <= 0);
+							if (litSurface)
 							{
 
-								float a = shadow_ray.direction * direction;
+								// Cast shadow!
+								lightFactor += shadow_ray.castShadow(shadowHits, hitData.triangle_ptr);
 							}
 
-
-							// Cast shadow!
-							lightFactor += shadow_ray.castShadow(shadowHits, hitData.triangle_ptr);
 						}
 					}
 
@@ -189,7 +188,7 @@
 // Implement ShadowRay
 
 	// Constructor
-	ShadowRay::ShadowRay(Scene& scene, Point3d origin, Vec3d direction):
+	ShadowRay::ShadowRay(Scene& scene, Point3d origin, Vec3d direction): 
 		Ray(scene, origin, direction)
 	{
 
@@ -209,10 +208,11 @@
 			Triangle& originTriangle = *originTriangle_ptr;
 
 			// Calculate normal Direction based on direction of ray & direction of normal - if same direction set to 1.0f, if not same direction negate.
-			float normalDirection = (direction * originTriangle.normal > 0) ? 1.0f : -1.0f ;
+			float normalDirection = (direction * originTriangle.normal > 0) ? 1.0f : -1.0f;
+			float shadingAmplification = 2.0f; // shadingAmplification < 1.0 = Attenuation, shadingAmplification > 1.0 = amplification
 
 			// Set Lambertian Shadin
-			float lambertianShading = std::max(0.0f, originTriangle.normal.normalize() * direction * normalDirection);
+			float lambertianShading = std::pow(std::max(0.0f, originTriangle.normal.normalize() * direction * normalDirection), shadingAmplification);
 			result += lambertianShading;
 
 

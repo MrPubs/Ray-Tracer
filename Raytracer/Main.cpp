@@ -18,7 +18,7 @@ int main()
     const float aspect_ratio = 16 / 9.0f;
     const int width = 640;
     const int height = width / aspect_ratio;
-    const int framerate = 60;
+    const int framerate = 0;
     const int fov = 90;
     const float environmentLight_level = 0.2f;
 
@@ -38,7 +38,7 @@ int main()
     scene.expand(gob1), scene.expand(gob2), scene.expand(gob3);
     //scene.expand(gob4);
 
-    PointLight plob1(Point3d(0, 10, 10), Rotator3d(0, 0, 0), 20, 50);
+    PointLight plob1(Point3d(0, 0, 10), Rotator3d(0, 0, 0), 20, 50);
     scene.expand(plob1);
 
 

@@ -79,7 +79,7 @@
 	}
 	void Triangle::setPlaneParams()
 	{
-		normal = (vertices[1] - vertices[0]).cross(vertices[2] - vertices[0]);
+		normal = (vertices[1] - vertices[0]).cross(vertices[2] - vertices[0]).normalize();
 		k = -(normal * vertices[0]);
 	}
 	void Triangle::setExtents()
