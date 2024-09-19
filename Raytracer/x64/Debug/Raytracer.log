@@ -1,35 +1,21 @@
-﻿  Main.cpp
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Main.cpp(20,30): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  Rays.cpp
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(100,23): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(119,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(141,33): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(141,33): warning C4244:         with
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(141,33): warning C4244:         [
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(141,33): warning C4244:             _Tp=uchar
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(141,33): warning C4244:         ]
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,33): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,33): warning C4244:         with
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,33): warning C4244:         [
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,33): warning C4244:             _Tp=uchar
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,33): warning C4244:         ]
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,33): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,33): warning C4244:         with
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,33): warning C4244:         [
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,33): warning C4244:             _Tp=uchar
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,33): warning C4244:         ]
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(153,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(163,36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
+﻿  Scene.cpp
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(132,87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(132,64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(217,19): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(217,19): warning C4244:         with
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(217,19): warning C4244:         [
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(217,19): warning C4244:             _Rep=double
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(217,19): warning C4244:         ]
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(295,13): warning C4390: ';': empty controlled statement found; is this the intent?
   Raytracer.vcxproj -> C:\Users\zivg\Documents\GHub\Ray-Tracer\x64\Debug\Raytracer.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
-  Set-Content : The process cannot access the file 
+  Add-Content : The process cannot access the file 
   'C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\x64\Debug\vcpkg.applocal.log' because it is being used by another 
   process.
-  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:12 char:5
-  +     Set-Content -Path $copiedFilesLog -Value "" -Encoding UTF8
-  +     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : NotSpecified: (:) [Set-Content], IOException
-      + FullyQualifiedErrorId : System.IO.IOException,Microsoft.PowerShell.Commands.SetContentCommand
+  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:61 char:32
+  + ... FilesLog) { Add-Content $copiedFilesLog $targetBinaryFilePath -Encodi ...
+  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      + CategoryInfo          : WriteError: (C:\Users\zivg\D...kg.applocal.log:String) [Add-Content], IOException
+      + FullyQualifiedErrorId : GetContentWriterIOError,Microsoft.PowerShell.Commands.AddContentCommand
    

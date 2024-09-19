@@ -38,8 +38,12 @@ int main()
     scene.expand(gob1), scene.expand(gob2), scene.expand(gob3);
     //scene.expand(gob4);
 
-    PointLight plob1(Point3d(0, 0, 10), Rotator3d(0, 0, 0), 20, 50);
+    PointLight plob1(Point3d(-6, 0, 10), Rotator3d(0, 0, 0), 20, 50);
     scene.expand(plob1);
+    PointLight plob2(Point3d(0, 0, 10), Rotator3d(0, 0, 0), 20, 50);
+    scene.expand(plob2);
+    PointLight plob3(Point3d(6, 0, 10), Rotator3d(0, 0, 0), 20, 50);
+    scene.expand(plob3);
 
 
     // Set Up Camera
@@ -50,5 +54,5 @@ int main()
     // Set up Viewport
     Viewport viewport(camera, framerate);
     viewport.work();
-
+    
 }

@@ -52,7 +52,7 @@
 
 				// Check if hit Plane:
 				distance = -1 * (T.normal * origin + T.k) / (T.normal * direction);
-				if (!std::isinf(distance) && (distance > 0 && distance < max_ray_length || max_ray_length == 0 && distance > 0))
+				if ((distance > 0 && distance < max_ray_length || max_ray_length == 0 && distance > 0) && !std::isinf(distance))
 				{
 
 					// Check hit Location

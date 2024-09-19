@@ -18,6 +18,13 @@ class Camera
 {
 public:
 
+	// Constants
+	const cv::Vec3b backgroundColor = cv::Vec3b(
+		250, // B
+		206, // G
+		135  // R
+	)*0.8f;
+
 	// Perspective
 	int width, height;
 	float fov, img_d;

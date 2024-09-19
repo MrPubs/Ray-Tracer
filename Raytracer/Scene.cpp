@@ -21,7 +21,7 @@
 		rotation(rotation),
 		scene(scene),
 
-		frame(width*height, cv::Vec3b(250,206,135)),
+		frame(width*height,backgroundColor),
 		zbuffer(width*height, 0.0f),
 		rays(width*height, PrimaryRay(scene, location))
 
@@ -38,7 +38,7 @@
 	void Camera::updateFrame()
 	{
 		// Reset Frame
-		std::fill(frame.begin(), frame.end(), cv::Vec3b(235, 206, 135));
+		std::fill(frame.begin(), frame.end(), backgroundColor);
 
 		// Reset Zbuffer
 		std::fill(zbuffer.begin(), zbuffer.end(), 0.0f);
@@ -185,9 +185,9 @@
 		while (true)
 		{
 
+			// Params
 			auto start = std::chrono::system_clock::now();
 			frameno++;
-			
 
 			// Update Frame
 			camera.updateFrame();
@@ -204,16 +204,15 @@
 			// Wait & Check for Exit
 			//checkInput();
 
-			
 			// testers
-			camera.scene.geomObjs[0].setRotation(Rotator3d(2.f, 0.f, 0.f));
-			camera.scene.geomObjs[1].setRotation(Rotator3d(1.f, 1.f, 1.f));
-			camera.scene.geomObjs[2].setRotation(Rotator3d(0.f, 2.f, 0.f));
+			camera.scene.geomObjs[0].setRotation(Rotator3d(3.f, 0.f, 0.f));
+			camera.scene.geomObjs[1].setRotation(Rotator3d(1.5f, 1.5f, 1.5f));
+			camera.scene.geomObjs[2].setRotation(Rotator3d(0.f, 3.f, 0.f));
 			cv::waitKey(1);
 
 			// Framerate Control & announce
 			auto time = elapsed_seconds.count() * 1000;
-			if (framerate != 0) // --------------- reword if codeblock! not working...
+			if (framerate != 0) // --------------- rework if codeblock! not working...
 			{
 				int sleeptime = (1000.0f / framerate) - time;
 				std::this_thread::sleep_for(std::chrono::milliseconds(sleeptime));
