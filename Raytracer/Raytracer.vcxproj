@@ -136,6 +136,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Anti-Aliasing.cpp" />
     <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="Lighting.cpp" />
     <ClCompile Include="Materials.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="Vectors.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Anti-Aliasing.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="Lighting.h" />
     <ClInclude Include="Materials.h" />

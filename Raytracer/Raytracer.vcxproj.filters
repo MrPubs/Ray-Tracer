@@ -57,6 +57,9 @@
     <ClCompile Include="Lighting.cpp">
       <Filter>Source Files\Rendering</Filter>
     </ClCompile>
+    <ClCompile Include="Anti-Aliasing.cpp">
+      <Filter>Source Files\Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Helpers.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files\Data</Filter>
     </ClInclude>
     <ClInclude Include="Lighting.h">
+      <Filter>Header Files\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Anti-Aliasing.h">
       <Filter>Header Files\Rendering</Filter>
     </ClInclude>
   </ItemGroup>

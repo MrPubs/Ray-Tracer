@@ -1,18 +1,13 @@
 
 
 // Rays.cpp
-//#include <vector> // reactivate if missing vector..
-
 #include "Rays.h"
 #include "Scene.h"
+#include "Anti-Aliasing.h"
 
 // Implement Ray
 
-	//Ray::HitData::HitData(Triangle triangle, Point3d hit_pt, float distance) triangle(triangle), hit_pt(hit_pt), distance(distance)
-	//{
-
-	//};
-	
+	// HitData Structure for passing the important data for each ray hit event	
 	Ray::HitData::HitData(Triangle* triangle_ptr, Point3d hit_pt, float distance): triangle_ptr(triangle_ptr), hit_pt(hit_pt), distance(distance)
 	{
 
@@ -31,7 +26,7 @@
 	// Methods
 	bool Ray::cast(std::vector<Ray::HitData>& hits, Triangle* avoidTriangle, bool quick)
 	{
-
+		
 		// Params
 		Point3d hit_pt({ 0,0,0 });
 		float distance = 0.0f;
@@ -135,6 +130,12 @@
 
 					// Update Z Buffer
 					camera.zbuffer[ray_ind] = hitData.distance;
+
+					// Use MSAA if Defined
+					if (MSAA* MSAA_ptr = dynamic_cast<MSAA*>(camera.aa_method))
+					{
+						MSAA_ptr->apply();
+					}
 
 					// Adjust Pixel - make better depth adjust function
 					Triangle& T = *hitData.triangle_ptr;

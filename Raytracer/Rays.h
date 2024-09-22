@@ -14,6 +14,7 @@ class Scene;
 class ShadowRay;
 class PointLight;
 
+// Declare Base Ray Class
 class Ray
 {
 public:

@@ -13,7 +13,7 @@
 // --~-- Implement Camera --~--
 	
 	// Constructor
-	Camera::Camera(int width, int height, float fov, Point3d location, Rotator3d rotation, Scene& scene) :
+	Camera::Camera(int width, int height, float fov, Point3d location, Rotator3d rotation, Scene& scene, AntiAliasing* aa_method) :
 		width(width),
 		height(height),
 		fov(fov),
@@ -23,8 +23,8 @@
 
 		frame(width*height,backgroundColor),
 		zbuffer(width*height, 0.0f),
-		rays(width*height, PrimaryRay(scene, location))
-
+		rays(width*height, PrimaryRay(scene, location)),
+		aa_method(aa_method)
 	{
 
 		// Update Image Plane Distance
@@ -66,7 +66,6 @@
 		{
 			thread.join();  // Block until each thread has completed
 		}
-
 	}
 
 	// Function to process a range of rows in parallel
@@ -88,8 +87,6 @@
 	void Camera::applyPP()
 	{
 
-		// Calculate Distance Shader
-		auto zbuffer_max = std::max_element(zbuffer.begin(), zbuffer.end());
 
 		// Get Pixel Based Access
 		for (int col = 0; col < width; col++)
@@ -97,12 +94,13 @@
 			for (int row = 0; row < height; row++)
 			{	
 
+				// Get Index
 				int index = row * width + col;
 
-				// if found
-				if (zbuffer[index] != 0)
+				// Use FXAA if defined..
+				if (FXAA* FXAA_ptr = dynamic_cast<FXAA*>(aa_method))
 				{
-					frame[index] *= (1-(zbuffer[index] / *zbuffer_max));
+					FXAA_ptr->apply();
 				}
 
 			}
@@ -196,19 +194,19 @@
 			std::chrono::duration<double> elapsed_seconds = end - start;
 
 			// Post Process
-			//camera.applyPP();
+			camera.applyPP();
 
 			// Display Image
 			cv::imshow("Raytracing Viewport", image);
+			cv::waitKey(1);
 
 			// Wait & Check for Exit
 			//checkInput();
 
-			// testers
+			// Rotators
 			camera.scene.geomObjs[0].setRotation(Rotator3d(3.f, 0.f, 0.f));
 			camera.scene.geomObjs[1].setRotation(Rotator3d(1.5f, 1.5f, 1.5f));
 			camera.scene.geomObjs[2].setRotation(Rotator3d(0.f, 3.f, 0.f));
-			cv::waitKey(1);
 
 			// Framerate Control & announce
 			auto time = elapsed_seconds.count() * 1000;

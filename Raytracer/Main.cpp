@@ -7,6 +7,7 @@
 #include "Geometry.h"
 #include "Helpers.h"
 #include "Lighting.h"
+#include "Anti-Aliasing.h"
 
 // Helpers
 //#include "Helpers.h"
@@ -49,7 +50,8 @@ int main()
     // Set Up Camera
     Point3d location(0, 0, 0);
     Rotator3d rotation(0, 0, 0);
-    Camera camera(width, height, fov, location, rotation, scene);
+    AntiAliasing* aa_method = new MSAA();
+    Camera camera(width, height, fov, location, rotation, scene, aa_method);
 
     // Set up Viewport
     Viewport viewport(camera, framerate);
