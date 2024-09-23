@@ -47,7 +47,7 @@ public:
 
 	// Update Frame
 	void updateFrame();
-	void processRows(int startRow, int endRow, std::array<Ray::HitDataVector, 2> hits);
+	void processRows(int startRow, int endRow, std::array<Ray::HitDataVector, 2> hits); // worker
 
 	// Post Process Frame
 	void applyPP();

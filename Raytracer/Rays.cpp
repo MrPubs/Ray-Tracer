@@ -134,14 +134,21 @@
 					// Use MSAA if Defined
 					if (MSAA* MSAA_ptr = dynamic_cast<MSAA*>(camera.aa_method))
 					{
-						MSAA_ptr->apply();
+						
+						// Apply MSAA
+						Vec3d AA_pixel = MSAA_ptr->apply();
+
+						pixel[0] = AA_pixel.z; // B
+						pixel[1] = AA_pixel.y; // G
+						pixel[2] = AA_pixel.x; // R
+
 					}
 
 					// Adjust Pixel - make better depth adjust function
 					Triangle& T = *hitData.triangle_ptr;
-					pixel[0] = T.material.color.z; // B
-					pixel[1] = T.material.color.y; // G
-					pixel[2] = T.material.color.x; // R
+					//pixel[0] = T.material.color.z; // B
+					//pixel[1] = T.material.color.y; // G
+					//pixel[2] = T.material.color.x; // R
 
 
 					// Cast Shadow Rays to every light source thats in range

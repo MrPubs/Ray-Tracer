@@ -1,66 +1,64 @@
 ﻿  Anti-Aliasing.cpp
   Main.cpp
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(35,13): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\variant(12): warning STL4038: The contents of <variant> are available only with C++17 or later.
 C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Main.cpp(21,30): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
   Rays.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\variant(12): warning STL4038: The contents of <variant> are available only with C++17 or later.
 C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(95,23): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(114,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,33): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,33): warning C4244:         with
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,33): warning C4244:         [
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,33): warning C4244:             _Tp=uchar
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,33): warning C4244:         ]
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,33): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,33): warning C4244:         with
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,33): warning C4244:         [
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,33): warning C4244:             _Tp=uchar
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,33): warning C4244:         ]
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(144,33): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(144,33): warning C4244:         with
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(144,33): warning C4244:         [
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(144,33): warning C4244:             _Tp=uchar
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(144,33): warning C4244:         ]
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(154,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(164,36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(141,26): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(141,26): warning C4244:         with
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(141,26): warning C4244:         [
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(141,26): warning C4244:             _Tp=uchar
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(141,26): warning C4244:         ]
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,26): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,26): warning C4244:         with
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,26): warning C4244:         [
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,26): warning C4244:             _Tp=uchar
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(142,26): warning C4244:         ]
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,26): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,26): warning C4244:         with
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,26): warning C4244:         [
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,26): warning C4244:             _Tp=uchar
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(143,26): warning C4244:         ]
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(161,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Rays.cpp(171,36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Scene.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\variant(12): warning STL4038: The contents of <variant> are available only with C++17 or later.
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(130,87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(130,64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(215,19): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(215,19): warning C4244:         with
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(215,19): warning C4244:         [
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(215,19): warning C4244:             _Rep=double
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(215,19): warning C4244:         ]
-C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(293,13): warning C4390: ';': empty controlled statement found; is this the intent?
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(135,87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(135,64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(220,19): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(220,19): warning C4244:         with
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(220,19): warning C4244:         [
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(220,19): warning C4244:             _Rep=double
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(220,19): warning C4244:         ]
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Scene.cpp(296,13): warning C4390: ';': empty controlled statement found; is this the intent?
   Generating Code...
   Raytracer.vcxproj -> C:\Users\zivg\Documents\GHub\Ray-Tracer\x64\Debug\Raytracer.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
-  Add-Content : The process cannot access the file 
-  'C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\x64\Debug\Raytracer.tlog\Raytracer.write.1u.tlog' because it is 
-  being used by another process.
+  Add-Content : Stream was not readable.
   At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:62 char:26
   + ... tlogFile) { Add-Content $tlogFile $targetBinaryFilePath -Encoding Uni ...
   +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : WriteError: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], IOException
-      + FullyQualifiedErrorId : GetContentWriterIOError,Microsoft.PowerShell.Commands.AddContentCommand
+      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], ArgumentExcep 
+     tion
+      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
    
-  Add-Content : The process cannot access the file 
-  'C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\x64\Debug\vcpkg.applocal.log' because it is being used by another 
-  process.
-  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:61 char:32
-  + ... FilesLog) { Add-Content $copiedFilesLog $targetBinaryFilePath -Encodi ...
-  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : WriteError: (C:\Users\zivg\D...kg.applocal.log:String) [Add-Content], IOException
-      + FullyQualifiedErrorId : GetContentWriterIOError,Microsoft.PowerShell.Commands.AddContentCommand
-   
-  Add-Content : The process cannot access the file 
-  'C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\x64\Debug\Raytracer.tlog\Raytracer.write.1u.tlog' because it is 
-  being used by another process.
+  Add-Content : Stream was not readable.
   At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:62 char:26
   + ... tlogFile) { Add-Content $tlogFile $targetBinaryFilePath -Encoding Uni ...
   +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : WriteError: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], IOException
-      + FullyQualifiedErrorId : GetContentWriterIOError,Microsoft.PowerShell.Commands.AddContentCommand
+      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], ArgumentExcep 
+     tion
+      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
+   
+  Add-Content : Stream was not readable.
+  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:62 char:26
+  + ... tlogFile) { Add-Content $tlogFile $targetBinaryFilePath -Encoding Uni ...
+  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], ArgumentExcep 
+     tion
+      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
    

@@ -1,40 +1,56 @@
 
 // Anti-Aliasing.cpp
 #include <iostream>
-#include <Vector>
 
 #include "Anti-Aliasing.h"
 #include "Vectors.h"
 
-// Implement MSAA Real-time AA
-	
+// Implement MSAA Real-time AA	
+
+	void MSAA::foo() {} // Force polymorphic class
+
 	MSAA::MSAA(int sample_count):
 		sample_count(sample_count)
 	{
 		
-		
+		// Initialize Result vector
+
 	}
 
-	void MSAA::apply()
+	Vec3d MSAA::apply()
 	{
 
-		result.clear();
-
-		// Work Per Sample
-		for (int sample_i = 0; sample_i < sample_count; sample_i++)
+		Vec3d result(0, 0, 0);
+		for (int sample_index = 0; sample_index < sample_count; sample_index++)
 		{
 
-			// Implement Sample
+			// 1. Detect Edges - bonus
+			// ??
 
-			// Populate Results
-			float R = 0, G = 0, B = 0;
-			result.emplace_back(Vec3d(R, G, B));
+			// 2. Trace Rays to Sample Locations
+			result += calculateSample(sample_index);
+
 		}
 
-		//return result;
+		result /= sample_count;
+		return result;
+
 	}
+	Vec3d MSAA::calculateSample(int sample_index)
+	{
+
+		// Get Variation of main Ray
+		
+		// Cast Ray
+
+		// Average
+
+		return Vec3d(255, 255, 255);
+	} // Helper
 
 // Implement FXAA Post-process AA
+
+	void FXAA::foo() {} // Force polymorphic class
 
 	FXAA::FXAA()
 	{
@@ -44,6 +60,6 @@
 	void FXAA::apply()
 	{
 
-		//std::cout << "Applying FXAA.." << std::endl;
+		//std::cout << "FXAA!" << std::endl;
 	}
 

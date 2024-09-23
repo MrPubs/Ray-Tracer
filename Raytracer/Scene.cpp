@@ -53,9 +53,14 @@
 		// Launch threads
 		for (int t = 0; t < numThreads; ++t)
 		{
+
+			// Position Parameters
 			int startRow = t * rowsPerThread;
 			int endRow = (t == numThreads - 1) ? height : startRow + rowsPerThread;
+
+			// DataStructure to Document Hits
 			std::array<Ray::HitDataVector, 2> hitDataVectors;
+
 
 			// Launch a thread to process this chunk of rows
 			threads.emplace_back(&Camera::processRows, this, startRow, endRow, hitDataVectors);
@@ -68,7 +73,7 @@
 		}
 	}
 
-	// Function to process a range of rows in parallel
+	// Helper Function to process a range of rows in parallel
 	void Camera::processRows(int startRow, int endRow, std::array<Ray::HitDataVector, 2> primaryHits)
 	{
 		for (int col = 0; col < width; col++)
@@ -222,8 +227,6 @@
 			}
 
 			system("cls");
-
-
 		}
 	}
 

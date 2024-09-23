@@ -10,7 +10,8 @@ std::array<std::array<float, 3>, 3> multiplyMatrices(const std::array<std::array
 
 // --~-- Implement Vec3d --~--
 
-	// Constructor
+// Constructors
+Vec3d::Vec3d() : x(0.0f), y(0.0f), z(0.0f) {}
 Vec3d::Vec3d(float x, float y, float z) : x(x), y(y), z(z) {}
 
 // Addition Operator
@@ -50,6 +51,24 @@ bool Vec3d::operator==(const Vec3d& other) const
 		y == other.y &&
 		z == other.z
 		);
+}
+
+// Accumulate
+void Vec3d::operator+=(const Vec3d& other)
+{
+
+	this->x += other.x;
+	this->y += other.y;
+	this->z += other.z;
+}
+
+// Divide
+void Vec3d::operator/=(const float divisor)
+{
+
+	this->x += this->x / divisor;
+	this->y += this->y / divisor;
+	this->z += this->z / divisor;
 }
 
 // Cross Product

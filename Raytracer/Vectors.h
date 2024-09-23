@@ -16,6 +16,7 @@ struct Vec3d
 	float x, y, z;
 
 	// Constructor
+	Vec3d();
 	Vec3d(float x, float y, float z);
 
 	// Operators
@@ -24,6 +25,8 @@ struct Vec3d
 	float operator*(const Vec3d& other) const;
 	Vec3d operator*(float scale) const;		  
 	bool operator==(const Vec3d& other) const;
+	void operator+=(const Vec3d& other);
+	void operator/=(const float divisor);
 
 	// Methods
 	Vec3d cross(const Vec3d& other) const;

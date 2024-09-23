@@ -1,6 +1,7 @@
 
 // Anti-Aliasing.h
 #pragma once
+#include "Vectors.h"
 
 // Forward Declarations
 
@@ -9,8 +10,7 @@ class AntiAliasing
 {
 public:
 
-	virtual void apply() = 0;
-	std::vector<Vec3d()> result;
+	virtual void foo() = 0; // Force polymorphic class
 
 };
 
@@ -19,6 +19,8 @@ class MSAA : public AntiAliasing
 {
 public:
 
+	void foo() override; // Force polymorphic class
+
 	// Parameters
 	int sample_count;
 
@@ -26,9 +28,8 @@ public:
 	MSAA(int sample_count = 4);
 
 	// Methods
-	void apply() override;
-
-
+	Vec3d apply();
+	Vec3d calculateSample(int sample_index); // Helper
 };
 
 
@@ -37,11 +38,13 @@ class FXAA : public AntiAliasing
 {
 public:
 
+	void foo() override; // Force polymorphic class
+
 	// Parameters
 
 	// Constructor
 	FXAA();
 
 	// Methods
-	void apply() override;
+	void apply();
 };
