@@ -23,6 +23,7 @@
 
 		frame(width*height,backgroundColor),
 		zbuffer(width*height, 0.0f),
+		nbuffer(width*height),
 		rays(width*height, PrimaryRay(scene, location)),
 		aa_method(aa_method)
 	{
@@ -34,15 +35,25 @@
 		SetRaysDirection();
 	}
 
-	// Update Frame
+	// ~*~ Update Frame 
 	void Camera::updateFrame()
 	{
-		// Reset Frame
-		std::fill(frame.begin(), frame.end(), backgroundColor);
+		// Reset States
+		std::fill(frame.begin(), frame.end(), backgroundColor); // Frame
+		std::fill(zbuffer.begin(), zbuffer.end(), 0.0f); // Zbuffer
+		std::fill(nbuffer.begin(), nbuffer.end(), Vec3d()); // Zbuffer
+		
+		// Render Pass..
+		renderPass();
 
-		// Reset Zbuffer
-		std::fill(zbuffer.begin(), zbuffer.end(), 0.0f);
+		// PP Pass
+		//postProcessPass();
 
+	}
+
+	// ~*~ Manager for renderPass 
+	bool Camera::renderPass()
+	{
 		// Vector to hold the threads
 		std::vector<std::thread> threads;
 
@@ -61,9 +72,8 @@
 			// DataStructure to Document Hits
 			std::array<Ray::HitDataVector, 2> hitDataVectors;
 
-
 			// Launch a thread to process this chunk of rows
-			threads.emplace_back(&Camera::processRows, this, startRow, endRow, hitDataVectors);
+			threads.emplace_back(&Camera::renderPass_Worker, this, startRow, endRow, hitDataVectors);
 		}
 
 		// Wait for all threads to finish
@@ -71,10 +81,12 @@
 		{
 			thread.join();  // Block until each thread has completed
 		}
+
+		return true;
 	}
 
-	// Helper Function to process a range of rows in parallel
-	void Camera::processRows(int startRow, int endRow, std::array<Ray::HitDataVector, 2> primaryHits)
+	// ~*~ Helper Function to process a range of rows in parallel for renderPass 
+	void Camera::renderPass_Worker(int startRow, int endRow, std::array<Ray::HitDataVector, 2> primaryHits)
 	{
 		for (int col = 0; col < width; col++)
 		{
@@ -83,16 +95,18 @@
 				int index = row * width + col;
 
 				// Cast the PrimaryRay
-				rays[index].castPrimary(row, col, primaryHits, *this);
+				rays[index].castPrimary(row, col, primaryHits, this);
 			}
 		}
 	}
 
-	// Apply Post Process to Frame
-	void Camera::applyPP()
+	// ~*~ Apply Post Process to Frame 
+	void Camera::postProcessPass()
 	{
 
-
+		// Assign Camera
+		aa_method->camera_ptr = this;
+		
 		// Get Pixel Based Access
 		for (int col = 0; col < width; col++)
 		{
@@ -102,10 +116,21 @@
 				// Get Index
 				int index = row * width + col;
 
-				// Use FXAA if defined..
-				if (FXAA* FXAA_ptr = dynamic_cast<FXAA*>(aa_method))
+				// Apply Appropriate AA
+				if (aa_method == nullptr)
 				{
+
+					continue;
+				}
+				else if (FXAA* FXAA_ptr = dynamic_cast<FXAA*>(aa_method))
+				{
+
 					FXAA_ptr->apply();
+				}
+				else if (MSAA* MSAA_ptr = dynamic_cast<MSAA*>(aa_method))
+				{
+
+					MSAA_ptr->apply(row, col);
 				}
 
 			}
@@ -195,12 +220,6 @@
 			// Update Frame
 			camera.updateFrame();
 
-			auto end = std::chrono::system_clock::now();
-			std::chrono::duration<double> elapsed_seconds = end - start;
-
-			// Post Process
-			camera.applyPP();
-
 			// Display Image
 			cv::imshow("Raytracing Viewport", image);
 			cv::waitKey(1);
@@ -208,12 +227,14 @@
 			// Wait & Check for Exit
 			//checkInput();
 
-			// Rotators
+			// Rotations
 			camera.scene.geomObjs[0].setRotation(Rotator3d(3.f, 0.f, 0.f));
 			camera.scene.geomObjs[1].setRotation(Rotator3d(1.5f, 1.5f, 1.5f));
 			camera.scene.geomObjs[2].setRotation(Rotator3d(0.f, 3.f, 0.f));
 
 			// Framerate Control & announce
+			auto end = std::chrono::system_clock::now();
+			std::chrono::duration<double> elapsed_seconds = end - start;
 			auto time = elapsed_seconds.count() * 1000;
 			if (framerate != 0) // --------------- rework if codeblock! not working...
 			{

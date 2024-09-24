@@ -4,6 +4,7 @@
 #include "Vectors.h"
 
 // Forward Declarations
+class Camera;
 
 // Declare Base AA Class
 class AntiAliasing
@@ -11,6 +12,10 @@ class AntiAliasing
 public:
 
 	virtual void foo() = 0; // Force polymorphic class
+
+	// Parameters
+	Camera* camera_ptr;
+
 
 };
 
@@ -28,8 +33,9 @@ public:
 	MSAA(int sample_count = 4);
 
 	// Methods
-	Vec3d apply();
-	Vec3d calculateSample(int sample_index); // Helper
+	Vec3d apply(int row, int col);
+	bool isEdge(int pixel_index);
+	Vec3d calculateSample(); // Helper
 };
 
 

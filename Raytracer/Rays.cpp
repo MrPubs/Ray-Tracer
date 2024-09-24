@@ -105,8 +105,10 @@
 
 
 	// PrimaryRay Casting, Calculate Pixel Color.
-	void PrimaryRay::castPrimary(const int row, const int col, std::array<Ray::HitDataVector, 2>& hitVectors, Camera& camera)
+	void PrimaryRay::castPrimary(const int row, const int col, std::array<Ray::HitDataVector, 2>& hitVectors, Camera* camera_ptr)
 	{
+
+		Camera& camera = *camera_ptr;
 
 		// variable setup
 		Ray::HitDataVector& primaryHits = hitVectors[0];
@@ -128,28 +130,17 @@
 				if (camera.zbuffer[ray_ind] == 0 || hitData.distance < camera.zbuffer[ray_ind])
 				{
 
-					// Update Z Buffer
-					camera.zbuffer[ray_ind] = hitData.distance;
-
-					// Use MSAA if Defined
-					if (MSAA* MSAA_ptr = dynamic_cast<MSAA*>(camera.aa_method))
-					{
-						
-						// Apply MSAA
-						Vec3d AA_pixel = MSAA_ptr->apply();
-
-						pixel[0] = AA_pixel.z; // B
-						pixel[1] = AA_pixel.y; // G
-						pixel[2] = AA_pixel.x; // R
-
-					}
-
-					// Adjust Pixel - make better depth adjust function
+					// Hit Surface
 					Triangle& T = *hitData.triangle_ptr;
-					//pixel[0] = T.material.color.z; // B
-					//pixel[1] = T.material.color.y; // G
-					//pixel[2] = T.material.color.x; // R
 
+					// Update Buffers
+					camera.zbuffer[ray_ind] = hitData.distance;
+					camera.nbuffer[ray_ind] = T.normal;
+
+					// Adjust Pixel Value
+					pixel[0] = T.material.color.z; // B
+					pixel[1] = T.material.color.y; // G
+					pixel[2] = T.material.color.x; // R
 
 					// Cast Shadow Rays to every light source thats in range
 					lightFactor = scene.environmentLight_level;

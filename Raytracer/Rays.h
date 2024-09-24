@@ -57,7 +57,7 @@ public:
 	PrimaryRay(Scene& scene, Point3d origin, Vec3d direction = Vec3d(0, 0, 0), cv::Vec3b pixel = { 0,0,0 });
 	
 	// Methods
-	void castPrimary(const int row, const int col, std::array<Ray::HitDataVector, 2>& hitVectors, Camera& camera);
+	void castPrimary(const int row, const int col, std::array<Ray::HitDataVector, 2>& hitVectors, Camera* camera_ptr);
 
 };
 

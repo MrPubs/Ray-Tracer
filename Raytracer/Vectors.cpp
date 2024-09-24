@@ -66,9 +66,9 @@ void Vec3d::operator+=(const Vec3d& other)
 void Vec3d::operator/=(const float divisor)
 {
 
-	this->x += this->x / divisor;
-	this->y += this->y / divisor;
-	this->z += this->z / divisor;
+	this->x = this->x / divisor;
+	this->y = this->y / divisor;
+	this->z = this->z / divisor;
 }
 
 // Cross Product

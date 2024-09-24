@@ -39,6 +39,7 @@ public:
 	Scene& scene;
 	std::vector<cv::Vec3b> frame;
 	std::vector<float> zbuffer;
+	std::vector<Vec3d> nbuffer;
 	std::vector<PrimaryRay> rays;
 	AntiAliasing* aa_method;
 
@@ -47,10 +48,11 @@ public:
 
 	// Update Frame
 	void updateFrame();
-	void processRows(int startRow, int endRow, std::array<Ray::HitDataVector, 2> hits); // worker
+	bool renderPass();
+	void renderPass_Worker(int startRow, int endRow, std::array<Ray::HitDataVector, 2> hits); // worker
 
 	// Post Process Frame
-	void applyPP();
+	void postProcessPass();
 	
 	// Calculate Image Distance
 	void calculateImageDistance();

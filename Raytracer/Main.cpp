@@ -51,6 +51,8 @@ int main()
     Point3d location(0, 0, 0);
     Rotator3d rotation(0, 0, 0);
     AntiAliasing* aa_method = new MSAA();
+    //AntiAliasing* aa_method = new FXAA();
+    //AntiAliasing* aa_method = nullptr;
     Camera camera(width, height, fov, location, rotation, scene, aa_method);
 
     // Set up Viewport
