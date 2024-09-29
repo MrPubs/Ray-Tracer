@@ -1,38 +1,49 @@
-# Ray-Tracer
-This is A Basic Readme to mark the start of the project, which will expand, change, and become more thorough as the project evolves.
+# Ray Tracer
 
-*IMPORTANT*: this is a learning project to serve as a challenge and a practical use for C++ implementation, and not a state of the art solution.
+This is a basic ray tracing project in C++ designed to explore and challenge C++ implementation through practical use.
 
-the architecture involves the following main objects:
+## Features
 
-*Geometry Setup:*
-1. Point - Vector3d that implements Coordinate operations.
-2. Triangle - a Collection of 3 Points.
-3. GeomObjs - Geometries that serve as a triangle collection that make up a Shape, Triangles are a collection of Vertices in space.
+- Camera, scene, and ray setup
+- Basic geometric objects (points, triangles, shapes)
+- Ray-object intersection handling
 
-*Rays Setup:*
-1. Ray - Responsible to update the image based on the pixel it is assigned to, in the future will serve for Polymorphism Rays (Primary, Secondary, Refraction...).
+## Project Structure
 
-*Scene Setup:*
-1. Scene - a Manager for all Geometries, Camera, And Light Sources.
-2. Camera - a Window into a Scene, it controls the Ray Objects that it casts to collect data from the Scene.
-3. Light Sources - Interacts with Ray Objects to Describe shading on Objects.
-4. Viewport - a Display for the Window of the Scene - Visualize Image.
+- **Geometry Setup:**
+  - `Point` - Implements vector operations.
+  - `Triangle` - A collection of 3 points.
+  - `GeomObjs` - Collection of triangles forming shapes.
+  
+- **Rays Setup:**
+  - `Ray` - Updates image based on assigned pixel.
 
-*Material Setup:*
-~ future planning ~
-Will be the foundation of GeomObjs Texturing - will serve as a setup for any future Material Attributes that might be applied.
+- **Scene Setup:**
+  - `Scene` - Manages geometries, camera, and light sources.
+  - `Camera` - Controls rays that collect scene data.
+  - `Viewport` - Displays the scene.
+  
+- **Future Plans:**
+  - Implement material properties and lighting (e.g., reflections, refractions).
 
+## Getting Started
 
-*Sources*:
+### Prerequisites
 
-How to Write a Ray Tracer Intuitively:
-https://blog.scottlogic.com/2020/03/10/raytracer-how-to.html
+- C++11 or later
+- OpenCV
 
-Exploring Ray Tracing and CGI - How is CGI Made?
-https://www.youtube.com/watch?v=iOlehM5kNSk
+### Installation
 
-How do Video Game Graphics Work?
-https://www.youtube.com/watch?v=C8YtdC8mxTU
- 
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/MrPubs/Ray-Tracer.git
+    ```
+2. Install OpenCV.
+3. Build the project.
 
+### Usage
+
+Run the program to generate a basic ray traced image:
+```bash
+./RayTracer
