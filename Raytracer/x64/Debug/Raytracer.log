@@ -1,1 +1,52 @@
-﻿  Raytracer.vcxproj -> C:\Users\zivg\Documents\GHub\Ray-Tracer\x64\Debug\Raytracer.exe
+﻿  Anti-Aliasing.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.38.33130\include\variant(12): warning STL4038: The contents of <variant> are available only with C++17 or later.
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(43,14): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(64,9): warning C4930: 'Vec3d direction(void)': prototyped function not called (was a variable definition intended?)
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(137,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(138,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(55): warning C4715: 'MSAA::apply': not all control paths return a value
+  Raytracer.vcxproj -> C:\Users\zivg\Documents\GHub\Ray-Tracer\x64\Debug\Raytracer.exe
+  'pwsh.exe' is not recognized as an internal or external command,
+  operable program or batch file.
+  Set-Content : The process cannot access the file 
+  'C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\x64\Debug\vcpkg.applocal.log' because it is being used by another 
+  process.
+  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:12 char:5
+  +     Set-Content -Path $copiedFilesLog -Value "" -Encoding UTF8
+  +     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      + CategoryInfo          : NotSpecified: (:) [Set-Content], IOException
+      + FullyQualifiedErrorId : System.IO.IOException,Microsoft.PowerShell.Commands.SetContentCommand
+   
+  Add-Content : Stream was not readable.
+  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:62 char:26
+  + ... tlogFile) { Add-Content $tlogFile $targetBinaryFilePath -Encoding Uni ...
+  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], ArgumentExcep 
+     tion
+      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
+   
+  Add-Content : The process cannot access the file 
+  'C:\Users\zivg\Documents\GHub\Ray-Tracer\Raytracer\x64\Debug\vcpkg.applocal.log' because it is being used by another 
+  process.
+  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:61 char:32
+  + ... FilesLog) { Add-Content $copiedFilesLog $targetBinaryFilePath -Encodi ...
+  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      + CategoryInfo          : WriteError: (C:\Users\zivg\D...kg.applocal.log:String) [Add-Content], IOException
+      + FullyQualifiedErrorId : GetContentWriterIOError,Microsoft.PowerShell.Commands.AddContentCommand
+   
+  Add-Content : Stream was not readable.
+  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:62 char:26
+  + ... tlogFile) { Add-Content $tlogFile $targetBinaryFilePath -Encoding Uni ...
+  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], ArgumentExcep 
+     tion
+      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
+   
+  Add-Content : Stream was not readable.
+  At C:\Users\zivg\Documents\VCPKG\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:62 char:26
+  + ... tlogFile) { Add-Content $tlogFile $targetBinaryFilePath -Encoding Uni ...
+  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...r.write.1u.tlog:String) [Add-Content], ArgumentExcep 
+     tion
+      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
+   

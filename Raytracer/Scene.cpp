@@ -38,6 +38,7 @@
 	// ~*~ Update Frame 
 	void Camera::updateFrame()
 	{
+
 		// Reset States
 		std::fill(frame.begin(), frame.end(), backgroundColor); // Frame
 		std::fill(zbuffer.begin(), zbuffer.end(), 0.0f); // Zbuffer
@@ -47,8 +48,7 @@
 		renderPass();
 
 		// PP Pass
-		//postProcessPass();
-
+		postProcessPass();
 	}
 
 	// ~*~ Manager for renderPass 
@@ -145,7 +145,7 @@
 
 	}
 
-	// Calculate MVecs
+	// Calculate Rays Direction
 	void Camera::SetRaysDirection()
 	{
 

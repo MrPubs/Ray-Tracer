@@ -149,23 +149,6 @@ Vec3d Vec3d::normalize() const
 	return Vec3d(x / length, y / length, z / length);
 }
 
-// --~-- Implement Point3d --~-- Deprecated Currently!
-// 
-//	// Constructor
-//Point3d::Point3d(float x, float y, float z) : Vec3d::Vec3d(x, y, z) {}
-//
-//
-//// Equal Operator
-//Point3d Point3d::operator=(const Vec3d& vec)
-//{
-//
-//	this->x = vec.x;
-//	this->y = vec.y;
-//	this->z = vec.z;
-//
-//	return *this;
-//}
-
 
 // --~-- Implement Rotator3d --~--
 

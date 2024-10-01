@@ -34,8 +34,9 @@ public:
 
 	// Methods
 	Vec3d apply(int row, int col);
-	bool isEdge(int pixel_index);
 	Vec3d calculateSample(); // Helper
+	bool isEdge(int pixel_index);
+	bool assessPixels(Camera* camera_ptr, int main_index, int neighbor_index, float depth_threshold, float normal_threshold, float color_threshold);
 };
 
 
