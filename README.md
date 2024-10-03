@@ -7,6 +7,8 @@ This is a basic ray tracing project in C++ designed to explore and challenge C++
 - Camera, scene, and ray setup
 - Basic geometric objects (points, triangles, shapes)
 - Ray-object intersection handling
+- Shadow Simulation Handling
+- Anti-Aliasing
 
 ## Project Structure
 
