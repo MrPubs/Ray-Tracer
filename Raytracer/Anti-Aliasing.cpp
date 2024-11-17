@@ -41,16 +41,16 @@ class Ray;
 
 			// Average
 			result /= sample_count;
-			camera_ptr->frame[pixel_index][0] = 0;
-			camera_ptr->frame[pixel_index][1] = 255;
-			camera_ptr->frame[pixel_index][2] = 0;
+
+			// Debug
+			camera_ptr->frame[pixel_index][0] = result.x;
+			camera_ptr->frame[pixel_index][1] = result.y;
+			camera_ptr->frame[pixel_index][2] = result.z;
+			
 			return result;
 		}
 		else
 		{
-			camera_ptr->frame[pixel_index][0] = 0;
-			camera_ptr->frame[pixel_index][1] = 0;
-			camera_ptr->frame[pixel_index][2] = 255;
 		}
 	}
 
@@ -58,7 +58,7 @@ class Ray;
 	{
 
 		// sample result
-		Vec3d sample_result(0, 0, 0);
+		Vec3d sample_result(0, 255, 0);
 
 		// Get Variation of main Ray
 		Vec3d direction();
@@ -76,7 +76,7 @@ class Ray;
 		const float depth_threshold = 2;
 		const float norm_threshold = 15;
 		const float color_threshold = 5;
-		
+
 		// Left neighbor
 		if (pixel_index % camera_ref.width != 0)
 		{
@@ -98,7 +98,7 @@ class Ray;
 		{
 
 			int up_index = pixel_index - camera_ref.width;
-			result += assessPixels(camera_ptr, pixel_index, pixel_index, depth_threshold, norm_threshold, color_threshold);
+			result += assessPixels(camera_ptr, pixel_index, up_index, depth_threshold, norm_threshold, color_threshold);
 		}
 		
 		// Down neighbor
@@ -109,11 +109,51 @@ class Ray;
 			result += assessPixels(camera_ptr, pixel_index, down_index, depth_threshold, norm_threshold, color_threshold);
 		}
 
+
 		// Evaluate edge
 		if (result >= 1) {
+			
+			/*// Detection Color
+			switch (result)
+			{
+			case 1:
+
+				camera_ptr->frame[pixel_index][0] = 0;
+				camera_ptr->frame[pixel_index][1] = 64;
+				camera_ptr->frame[pixel_index][2] = 0;
+				break;
+
+			case 2:
+
+				camera_ptr->frame[pixel_index][0] = 0;
+				camera_ptr->frame[pixel_index][1] = 128;
+				camera_ptr->frame[pixel_index][2] = 0;
+				break;
+
+			case 3:
+
+				camera_ptr->frame[pixel_index][0] = 0;
+				camera_ptr->frame[pixel_index][1] = 196;
+				camera_ptr->frame[pixel_index][2] = 0;
+				break;
+
+			case 4:
+
+				camera_ptr->frame[pixel_index][0] = 0;
+				camera_ptr->frame[pixel_index][1] = 255;
+				camera_ptr->frame[pixel_index][2] = 0;
+				break;
+			}*/
+
 			return true;
 		}
 		else {
+
+			/*// Undetected Color
+			camera_ptr->frame[pixel_index][0] = 0;
+			camera_ptr->frame[pixel_index][1] = 0;
+			camera_ptr->frame[pixel_index][2] = 0;*/
+
 			return false;
 		}
 	}
@@ -128,14 +168,14 @@ class Ray;
 		bool depth_flag = false;
 		bool normal_flag = false;
 		bool color_flag = false;
-
+		
 		// Camera Reference
 		const Camera& camera_ref = *camera_ptr;
 
 		// Conditions
-		float condition_a = std::abs(camera_ref.zbuffer[main_index] - camera_ref.zbuffer[neighbor_index]);
-		float condition_b = (std::acos(camera_ref.nbuffer[main_index] * camera_ref.nbuffer[neighbor_index]) * (180.0f / PI));
-		float condition_c = cv::norm(camera_ref.frame[main_index] - camera_ref.frame[neighbor_index]);
+		float condition_a = std::abs(camera_ref.zbuffer[main_index] - camera_ref.zbuffer[neighbor_index]); // Depth Buffer Delta
+		float condition_b = (std::acos(camera_ref.nbuffer[main_index] * camera_ref.nbuffer[neighbor_index]) * (180.0f / PI)); // Normals Angle
+		float condition_c = cv::norm(camera_ref.frame[main_index] - camera_ref.frame[neighbor_index]); // Color Delta
 
 		// Comparison
 		if (condition_a > depth_threshold) { depth_flag = true; };  //  Depth Difference Test
@@ -148,6 +188,7 @@ class Ray;
 			return true; 
 		}
 		else {
+
 			return false; 
 		}
 	}

@@ -100,7 +100,7 @@
 		}
 	}
 
-	// ~*~ Apply Post Process to Frame 
+	// ~*~ Apply Post Process to Frame 3
 	void Camera::postProcessPass()
 	{
 
@@ -126,11 +126,13 @@
 				{
 
 					FXAA_ptr->apply();
+					//continue;
 				}
 				else if (MSAA* MSAA_ptr = dynamic_cast<MSAA*>(aa_method))
 				{
 
 					MSAA_ptr->apply(row, col);
+					//continue;
 				}
 
 			}

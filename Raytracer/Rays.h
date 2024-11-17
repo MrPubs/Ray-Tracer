@@ -5,7 +5,6 @@
 #include <vector>
 #include <tuple>
 #include <opencv2.4/opencv2/opencv.hpp>
-
 #include "Geometry.h"
 
 // Forward Declarations
