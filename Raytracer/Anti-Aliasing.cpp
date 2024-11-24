@@ -31,21 +31,34 @@ class Ray;
 		if (isEdge(pixel_index))
 		{
 
-			// 2. Trace Rays to Sample Locations
+			// Multi-Sampled Pixel
 			Vec3d result(0, 0, 0);
+			
+			// Get former Direction
+			Vec3d former_direction = camera_ptr->rays[pixel_index].direction;
+
+			// HitDataVector for Ray Casting
+			// TODO: find a way to avoid creating new container for this!!
+			std::array<Ray::HitDataVector, 2> hitDataVectors;
+
+			// Trace Rays to Sample Locations
 			for (int sample_index = 0; sample_index < sample_count; sample_index++)
 			{
 
-				result += calculateSample();
+				// 1. Get Direction Variation
+				// 2. Calculate Sample
+				result += calculateSample(pixel_index, former_direction, hitDataVectors, row, col);
+				//std::cout << "Result #" << sample_index << " [X=" << result.x << ", Y=" << result.y << ", Z=" << result.z << "]" << std::endl;
 			}
 
-			// Average
-			result /= sample_count;
+			// Finish
+			camera_ptr->rays[pixel_index].direction = former_direction; // Reset Ray Direction
+			result /= sample_count; // Average
 
 			// Debug
-			camera_ptr->frame[pixel_index][0] = result.x;
+			camera_ptr->frame[pixel_index][2] = result.x;
 			camera_ptr->frame[pixel_index][1] = result.y;
-			camera_ptr->frame[pixel_index][2] = result.z;
+			camera_ptr->frame[pixel_index][0] = result.z;
 			
 			return result;
 		}
@@ -54,15 +67,17 @@ class Ray;
 		}
 	}
 
-	Vec3d MSAA::calculateSample()
+	Vec3d MSAA::calculateSample(int index, Vec3d direction, std::array<Ray::HitDataVector, 2>& HitVectors, int row, int col)
 	{
 
-		// sample result
-		Vec3d sample_result(0, 255, 0);
-
 		// Get Variation of main Ray
-		Vec3d direction();
-		return sample_result;
+		camera_ptr->rays[index].direction = direction;
+		camera_ptr->rays[index].castPrimary(row, col, HitVectors, camera_ptr);
+
+		// RGB
+		//return Vec3d(255, 0 ,0);
+		return Vec3d(camera_ptr->frame[index][0], camera_ptr->frame[index][1], camera_ptr->frame[index][0]);
+
 	} // Helper
 
 	bool MSAA::isEdge(int pixel_index)

@@ -126,7 +126,7 @@
 			for (Ray::HitData& hitData : primaryHits)
 			{
 
-				//Check if closer than current pixel
+				// Check if closer than current pixel
 				if (camera.zbuffer[ray_ind] == 0 || hitData.distance < camera.zbuffer[ray_ind])
 				{
 

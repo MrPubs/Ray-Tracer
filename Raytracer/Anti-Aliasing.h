@@ -2,6 +2,7 @@
 // Anti-Aliasing.h
 #pragma once
 #include "Vectors.h"
+#include "Rays.h"
 
 // Forward Declarations
 class Camera;
@@ -34,7 +35,7 @@ public:
 
 	// Methods
 	Vec3d apply(int row, int col);
-	Vec3d calculateSample(); // Helper
+	Vec3d calculateSample(int index, Vec3d direction, std::array<Ray::HitDataVector, 2>& HitVectors, int row, int col); // Helper
 	bool isEdge(int pixel_index);
 	bool assessPixels(Camera* camera_ptr, int main_index, int neighbor_index, float depth_threshold, float normal_threshold, float color_threshold);
 };
