@@ -36,6 +36,7 @@ class Ray;
 			
 			// Get former Direction
 			Vec3d former_direction = camera_ptr->rays[pixel_index].direction;
+			Vec3d sample_direction(0, 0, 0);
 
 			// HitDataVector for Ray Casting
 			// TODO: find a way to avoid creating new container for this!!
@@ -45,9 +46,11 @@ class Ray;
 			for (int sample_index = 0; sample_index < sample_count; sample_index++)
 			{
 
-				// 1. Get Direction Variation
+				// 1. Get Varied Sample Direction
+				sample_direction = getSampleDirection(former_direction);
+
 				// 2. Calculate Sample
-				result += calculateSample(pixel_index, former_direction, hitDataVectors, row, col);
+				result += calculateSample(pixel_index, sample_direction, hitDataVectors, row, col);
 				//std::cout << "Result #" << sample_index << " [X=" << result.x << ", Y=" << result.y << ", Z=" << result.z << "]" << std::endl;
 			}
 
@@ -56,18 +59,26 @@ class Ray;
 			result /= sample_count; // Average
 
 			// Debug
-			camera_ptr->frame[pixel_index][2] = result.x;
-			camera_ptr->frame[pixel_index][1] = result.y;
-			camera_ptr->frame[pixel_index][0] = result.z;
+			cv::Vec3b& frame_pixel = camera_ptr->frame[pixel_index];
+			frame_pixel[2] = result.x;
+			frame_pixel[1] = result.y;
+			frame_pixel[0] = result.z;
 			
 			return result;
 		}
 		else
 		{
+
 		}
 	}
 
-	Vec3d MSAA::calculateSample(int index, Vec3d direction, std::array<Ray::HitDataVector, 2>& HitVectors, int row, int col)
+	Vec3d MSAA::getSampleDirection(const Vec3d& former_direction)
+	{
+
+		return former_direction;
+	}
+
+	Vec3d MSAA::calculateSample(int index, Vec3d& direction, std::array<Ray::HitDataVector, 2>& HitVectors, int row, int col)
 	{
 
 		// Get Variation of main Ray
@@ -76,7 +87,7 @@ class Ray;
 
 		// RGB
 		//return Vec3d(255, 0 ,0);
-		return Vec3d(camera_ptr->frame[index][0], camera_ptr->frame[index][1], camera_ptr->frame[index][0]);
+		return Vec3d(camera_ptr->frame[index][2], camera_ptr->frame[index][1], camera_ptr->frame[index][0]);
 
 	} // Helper
 
