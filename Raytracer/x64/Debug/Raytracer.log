@@ -1,41 +1,69 @@
 ﻿  Anti-Aliasing.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\variant(13): warning STL4038: The contents of <variant> are available only with C++17 or later.
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(59,14): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(63,27): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=uchar
-          ]
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(64,27): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=uchar
-          ]
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(61,14): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
 C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(65,27): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
           with
           [
               _Tp=uchar
           ]
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(203,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(204,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(73): warning C4715: 'MSAA::apply': not all control paths return a value
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(66,27): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=uchar
+          ]
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(67,27): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=uchar
+          ]
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(82,99): warning C4244: 'argument': conversion from '_Tp' to 'float', possible loss of data
+          with
+          [
+              _Tp=double
+          ]
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(82,35): warning C4244: 'argument': conversion from '_Tp' to 'float', possible loss of data
+          with
+          [
+              _Tp=double
+          ]
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(207,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(208,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Main.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\variant(13): warning STL4038: The contents of <variant> are available only with C++17 or later.
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Main.cpp(21,30): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Rays.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\variant(13): warning STL4038: The contents of <variant> are available only with C++17 or later.
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Rays.cpp(95,23): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Rays.cpp(116,26): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Rays.cpp(141,33): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=uchar
+          ]
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Rays.cpp(142,33): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=uchar
+          ]
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Rays.cpp(143,33): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=uchar
+          ]
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Rays.cpp(152,20): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Rays.cpp(162,36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Scene.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\variant(13): warning STL4038: The contents of <variant> are available only with C++17 or later.
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Scene.cpp(162,87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Scene.cpp(162,64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Scene.cpp(243,19): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=double
+          ]
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Scene.cpp(319,13): warning C4390: ';': empty controlled statement found; is this the intent?
+  Generating Code...
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(75): warning C4715: 'MSAA::apply': not all control paths return a value
   Raytracer.vcxproj -> C:\Users\zivg\Documents\Git\Ray-Tracer\x64\Debug\Raytracer.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.
-  Set-Content : The process cannot access the file 
-  'C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\x64\Debug\vcpkg.applocal.log' because it is being used by another 
-  process.
-  At C:\Users\zivg\Documents\Git\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:12 char:5
-  +     Set-Content -Path $copiedFilesLog -Value "" -Encoding UTF8
-  +     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : NotSpecified: (:) [Set-Content], IOException
-      + FullyQualifiedErrorId : System.IO.IOException,Microsoft.PowerShell.Commands.SetContentCommand
-   
-  Add-Content : Stream was not readable.
-  At C:\Users\zivg\Documents\Git\vcpkg\scripts\buildsystems\msbuild\applocal.ps1:61 char:32
-  + ... FilesLog) { Add-Content $copiedFilesLog $targetBinaryFilePath -Encodi ...
-  +                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      + CategoryInfo          : InvalidArgument: (C:\Users\zivg\D...kg.applocal.log:String) [Add-Content], ArgumentExcep 
-     tion
-      + FullyQualifiedErrorId : GetContentWriterArgumentError,Microsoft.PowerShell.Commands.AddContentCommand
-   

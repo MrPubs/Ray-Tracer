@@ -47,12 +47,14 @@ class Ray;
 			{
 
 				// 1. Get Varied Sample Direction
-				sample_direction = getSampleDirection(former_direction);
+				sample_direction = getSampleDirection(former_direction, sample_index);
 
 				// 2. Calculate Sample
 				result += calculateSample(pixel_index, sample_direction, hitDataVectors, row, col);
 				//std::cout << "Result #" << sample_index << " [X=" << result.x << ", Y=" << result.y << ", Z=" << result.z << "]" << std::endl;
 			}
+
+			//std::cout << former_direction.x << " " << former_direction.y << " " << former_direction.z << std::endl;
 
 			// Finish
 			camera_ptr->rays[pixel_index].direction = former_direction; // Reset Ray Direction
@@ -72,10 +74,12 @@ class Ray;
 		}
 	}
 
-	Vec3d MSAA::getSampleDirection(const Vec3d& former_direction)
+	Vec3d MSAA::getSampleDirection(const Vec3d& former_direction, const int& sample_index)
 	{
 
-		return former_direction;
+		// TODO: switch case for MSAA Sampling Technique when necessary!
+
+		return Vec3d(former_direction.x - SampleCoords2By2Grid[sample_index].val[0], former_direction.y - SampleCoords2By2Grid[sample_index].val[1], former_direction.z);
 	}
 
 	Vec3d MSAA::calculateSample(int index, Vec3d& direction, std::array<Ray::HitDataVector, 2>& HitVectors, int row, int col)
