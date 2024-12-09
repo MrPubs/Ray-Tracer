@@ -12,6 +12,25 @@
 // Forward Declarations
 class Ray;
 
+// Implement AntiAliasing Class
+	
+	void AntiAliasing::set2By2GridLookup()
+	{
+
+		// Offset (1 = full pixel)
+		float horizontal_offset = camera_ptr->unit_pixel.val[0]* 0.25; // width
+		float vertical_offset = camera_ptr->unit_pixel.val[1]* 0.25; // height
+
+		SampleCoords2By2Grid =
+		{
+
+			cv::Vec2d(horizontal_offset, vertical_offset),
+			cv::Vec2d(-horizontal_offset, vertical_offset),
+			cv::Vec2d(horizontal_offset, -vertical_offset),
+			cv::Vec2d(-horizontal_offset, -vertical_offset)
+		};
+	}
+
 // Implement MSAA Real-time AA	
 
 	void MSAA::foo() {} // Force polymorphic class
@@ -25,17 +44,20 @@ class Ray;
 	Vec3d MSAA::apply(int row, int col)
 	{
 
-		int pixel_index = row * camera_ptr->width + col;
+		Camera& camera_ref = *camera_ptr;
+		int pixel_index = row * camera_ref.width + col;
 
 		// 1. Detect Edges
 		if (isEdge(pixel_index))
 		{
 
+			// Vec3d a = Vec3d((col - camera_ref.width / 2) * 1, (camera_ref.height / 2 - row) * 1, camera_ref.img_d).rotate(camera_ref.location, camera_ref.rotation.toRad()).normalize();
+			
 			// Multi-Sampled Pixel
 			Vec3d result(0, 0, 0);
 			
 			// Get former Direction
-			Vec3d former_direction = camera_ptr->rays[pixel_index].direction;
+			Vec3d former_direction = camera_ref.rays[pixel_index].direction;
 			Vec3d sample_direction(0, 0, 0);
 
 			// HitDataVector for Ray Casting
@@ -51,22 +73,19 @@ class Ray;
 
 				// 2. Calculate Sample
 				result += calculateSample(pixel_index, sample_direction, hitDataVectors, row, col);
-				//std::cout << "Result #" << sample_index << " [X=" << result.x << ", Y=" << result.y << ", Z=" << result.z << "]" << std::endl;
 			}
 
-			//std::cout << former_direction.x << " " << former_direction.y << " " << former_direction.z << std::endl;
-
 			// Finish
-			camera_ptr->rays[pixel_index].direction = former_direction; // Reset Ray Direction
+			camera_ref.rays[pixel_index].direction = former_direction; // Reset Ray Direction
 			result /= sample_count; // Average
 
 			// Debug
-			cv::Vec3b& frame_pixel = camera_ptr->frame[pixel_index];
-			frame_pixel[2] = result.x;
-			frame_pixel[1] = result.y;
-			frame_pixel[0] = result.z;
-			
+			camera_ref.frame[pixel_index][2] = result.x;
+			camera_ref.frame[pixel_index][1] = result.y;
+			camera_ref.frame[pixel_index][0] = result.z;
+
 			return result;
+
 		}
 		else
 		{
@@ -79,7 +98,7 @@ class Ray;
 
 		// TODO: switch case for MSAA Sampling Technique when necessary!
 
-		return Vec3d(former_direction.x - SampleCoords2By2Grid[sample_index].val[0], former_direction.y - SampleCoords2By2Grid[sample_index].val[1], former_direction.z);
+		return Vec3d(former_direction.x + SampleCoords2By2Grid[sample_index].val[0], former_direction.y + SampleCoords2By2Grid[sample_index].val[1], former_direction.z);
 	}
 
 	Vec3d MSAA::calculateSample(int index, Vec3d& direction, std::array<Ray::HitDataVector, 2>& HitVectors, int row, int col)

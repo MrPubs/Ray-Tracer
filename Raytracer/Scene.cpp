@@ -20,13 +20,16 @@
 		location(location),
 		rotation(rotation),
 		scene(scene),
-
+		
 		frame(width*height,backgroundColor),
 		zbuffer(width*height, 0.0f),
 		nbuffer(width*height),
 		rays(width*height, PrimaryRay(scene, location)),
 		aa_method(aa_method)
 	{
+
+		// Calculate Unit Pixel
+		unit_pixel = cv::Vec2d(1.0f / width, 1.0f / height);
 
 		// Update Image Plane Distance
 		calculateImageDistance();
@@ -131,6 +134,10 @@
 				else if (MSAA* MSAA_ptr = dynamic_cast<MSAA*>(aa_method))
 				{
 
+					// Setup Lookup Tables
+					aa_method->set2By2GridLookup();
+
+					// Apply AA
 					MSAA_ptr->apply(row, col);
 					//continue;
 				}
@@ -159,7 +166,7 @@
 			{
 
 				// Calculate Slope..
-				rays[row * width + col].direction = Vec3d((col - width / 2)*1, (height / 2 - row) * 1, img_d).rotate(location, rotation.toRad()).normalize();
+				rays[row * width + col].direction = Vec3d((col - width / 2)*1, (height / 2 - row)*1, img_d).rotate(location, rotation.toRad()).normalize();
 
 			}
 		}

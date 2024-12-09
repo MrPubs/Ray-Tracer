@@ -20,7 +20,7 @@ class Camera
 {
 public:
 
-	// Constants
+	// Background Color
 	const cv::Vec3b backgroundColor = cv::Vec3b(
 		250, // B
 		206, // G
@@ -34,6 +34,9 @@ public:
 	// Transform
 	Point3d location;
 	Rotator3d rotation;
+
+	// Unit Pixel for Sampling
+	cv::Vec2d unit_pixel;
 
 	// Frame
 	Scene& scene;

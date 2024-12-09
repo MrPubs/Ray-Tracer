@@ -1,36 +1,50 @@
 ﻿  Anti-Aliasing.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\variant(13): warning STL4038: The contents of <variant> are available only with C++17 or later.
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(61,14): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(65,27): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=uchar
-          ]
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(66,27): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=uchar
-          ]
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(67,27): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
-          with
-          [
-              _Tp=uchar
-          ]
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(82,99): warning C4244: 'argument': conversion from '_Tp' to 'float', possible loss of data
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(21,27): warning C4244: 'initializing': conversion from '_Tp' to 'float', possible loss of data
           with
           [
               _Tp=double
           ]
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(82,35): warning C4244: 'argument': conversion from '_Tp' to 'float', possible loss of data
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(22,25): warning C4244: 'initializing': conversion from '_Tp' to 'float', possible loss of data
           with
           [
               _Tp=double
           ]
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(207,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(208,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(80,14): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(83,45): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=uchar
+          ]
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(84,45): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=uchar
+          ]
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(85,45): warning C4244: '=': conversion from 'float' to '_Tp', possible loss of data
+          with
+          [
+              _Tp=uchar
+          ]
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(101,99): warning C4244: 'argument': conversion from '_Tp' to 'float', possible loss of data
+          with
+          [
+              _Tp=double
+          ]
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(101,35): warning C4244: 'argument': conversion from '_Tp' to 'float', possible loss of data
+          with
+          [
+              _Tp=double
+          ]
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(226,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(227,21): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Geometry.cpp
+  Helpers.cpp
+  Lighting.cpp
   Main.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\variant(13): warning STL4038: The contents of <variant> are available only with C++17 or later.
 C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Main.cpp(21,30): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Materials.cpp
   Rays.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\variant(13): warning STL4038: The contents of <variant> are available only with C++17 or later.
 C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Rays.cpp(95,23): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
@@ -54,16 +68,18 @@ C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Rays.cpp(152,20): warning C4244
 C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Rays.cpp(162,36): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
   Scene.cpp
 C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.37.32822\include\variant(13): warning STL4038: The contents of <variant> are available only with C++17 or later.
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Scene.cpp(162,87): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Scene.cpp(162,64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Scene.cpp(243,19): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Scene.cpp(169,86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Scene.cpp(169,64): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Scene.cpp(250,19): warning C4244: 'initializing': conversion from '_Rep' to 'int', possible loss of data
           with
           [
               _Rep=double
           ]
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Scene.cpp(319,13): warning C4390: ';': empty controlled statement found; is this the intent?
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Scene.cpp(326,13): warning C4390: ';': empty controlled statement found; is this the intent?
+  Vectors.cpp
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Vectors.cpp(140,18): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   Generating Code...
-C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(75): warning C4715: 'MSAA::apply': not all control paths return a value
+C:\Users\zivg\Documents\Git\Ray-Tracer\Raytracer\Anti-Aliasing.cpp(94): warning C4715: 'MSAA::apply': not all control paths return a value
   Raytracer.vcxproj -> C:\Users\zivg\Documents\Git\Ray-Tracer\x64\Debug\Raytracer.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

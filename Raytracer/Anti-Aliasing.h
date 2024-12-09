@@ -18,17 +18,17 @@ public:
 
 	// Parameters
 	Camera* camera_ptr;
-
+	
 	// Sampling Lookup Tables
 	// 2x2 Grid
 	std::array<cv::Vec2d, 4> SampleCoords2By2Grid = {{
-		cv::Vec2d(0.0025, 0.0025),
-		cv::Vec2d(-0.0025, 0.0025),
-		cv::Vec2d(0.0025, -0.0025),
-		cv::Vec2d(-0.0025, -0.0025)
+		cv::Vec2d(1, 1),
+		cv::Vec2d(-1, 1),
+		cv::Vec2d(1, -1),
+		cv::Vec2d(-1, -1)
 	} };
 
-
+	void set2By2GridLookup();
 };
 
 // Declare MSAA AntiAliasing
